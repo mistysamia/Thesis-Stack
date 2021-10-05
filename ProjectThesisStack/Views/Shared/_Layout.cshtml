@@ -1,0 +1,223 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <!-- Font Awesome link -->
+    <script src="https://kit.fontawesome.com/87ffe8273c.js" crossorigin="anonymous"></script>
+
+
+    @Styles.Render("~/Content/navBar.css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .navbar-brand img {
+            height: 2rem;
+        }
+
+
+
+        footer p {
+            color: #fff;
+            line-height: 25px;
+        }
+
+        footer li {
+            color: #fff;
+            line-height: 25px;
+        }
+
+        footer h3 {
+            color: orangered;
+        }
+
+            footer h3:before {
+                content: "| ";
+                columns: orangered;
+                padding-right: 10px;
+                ;
+            }
+
+        .footer-top {
+            background: #111;
+            padding: 80px 0;
+        }
+
+        .segment-two ul li {
+            border-bottom: 1px solid lightgrey;
+            line-height: 30px;
+            list-style: circle;
+        }
+
+        .segment-three a {
+            background: orangered;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            border-radius: 50%;
+        }
+
+            .segment-three a i {
+                font-size: 20px;
+                color: #fff;
+                padding: 10px 12px;
+            }
+
+                .segment-three a i:hover {
+                    background: white;
+                    width: 40px;
+                    height: 40px;
+                    display: inline-block;
+                    border-radius: 50%;
+                    color: orangered;
+                }
+
+        .segment-four form input[type=submit] {
+            background-color: orangered;
+            border: none;
+            padding: 3px 15px;
+            margin-left: -5px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .footer-bottom-text {
+            text-align: center;
+            background: black;
+            line-height: 75px;
+        }
+
+        .logo {
+            width: 80%;
+            height: 40%;
+        }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="  navbar fixed-top navbar-expand-lg navbar-dark HeaderBgColor d-flex justify-content-between ">
+        <section class="container-fluid ">
+            <article class="d-flex justify-content-between">
+                <div class="Logo">
+                    <a class="navbar-brand" href="#">
+                        <img style="width: 40%;" src="~/Content/demologo.svg">
+                    </a>
+                </div>
+                <div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </article>
+            <article class="collapse navbar-collapse   " id="navbarNavAltMarkup">
+                <div class=" d-flex justify-content-evenly navbar-nav  ">
+                    <a class="nav-link active px-3 pageName" aria-current="page" href="@Url.Action("Index","Home/Index")">HOME</a>
+                    <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/NewsFeed")">NEWSFEED</a>
+                    <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/Supervisors")">SUPERVISORS</a>
+                    <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/Teams")">TEAMS</a>
+                    <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/Notice")">NOTICE</a>
+                    @if (Session["userType"] == "Supervisor")
+                    {
+                        <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/SupervisorTeam")">Add New Team</a>
+                    }
+                    <a class="nav-link  px-3 pageName" href="@Url.Action("Index","Home/MyProfile")">
+                        MY PROFILE
+
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <a class="nav-link  px-3 pageName" href="@Url.Action("Index","Home/Logout")">
+                        LOGOUT
+
+
+                    </a>
+
+
+
+                    <!-- <a class="nav-link px-4" href="" tabindex="-1" aria-disabled="true">Contact</a> -->
+                </div>
+            </article>
+        </section>
+    </nav>
+
+
+    <div class=" body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
+                            <h3>THESIS STACK</h3>
+                            <img class="logo" src="~/Content/Image/logo.png" />
+                            <p>
+                                An university Thesis Management System having a collections of thesis papers and a community
+                                of students and supervisors.
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-two md-mb-30 sm-mb-30">
+                            <h3>DEVELOPER INFO</h3>
+                            <ul>
+                                <li>Samia Rahman Misty</li>
+                                <li>Parvez Mia</li>
+                                <li>Mohosin Islam Palash</li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-three md-mb-30 sm-mb-30">
+                            <h3>FOLLOW US</h3>
+                            <p>
+                                We are available in social medias. You may contact us from 10 AM to 10 PM. And our executive
+                                member will reply you as soon as possible
+                            </p>
+                            <a href=""><i class="fa fa-facebook"></i></a>
+                            <a href=""><i class="fa fa-instagram"></i></a>
+                            <a href=""><i class="fa fa-twitter"></i></a>
+                            <a href=""><i class="fa fa-linkedin"></i></a>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 segment-four md-mb-30 sm-mb-30">
+                            <h3>CONTACT US</h3>
+                            <p>
+                                We take any feedback with great interest. You may also be a part of makin our activity
+                                smoother just typing a text in the below box and tap on the sen dbutton.
+                            </p>
+                            <form action="">
+                                <input type="email">
+                                <input type="submit" value="Send">
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-bottom-text">All rights reserved by &copy; Thesis Stack 2021</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+</body>
+</html>

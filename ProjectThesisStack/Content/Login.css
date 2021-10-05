@@ -1,0 +1,207 @@
+﻿body {
+    margin: 0;
+    font-family: 'Gemunu Libre', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
+    max-width: 100%;
+}
+
+video {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .video-background .color-overlay {
+        background: rgba(64, 64, 70, 0.74);
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        z-index: 1;
+    }
+
+
+
+.container {
+    position: absolute;
+    z-index: 2;
+    margin-top: -630px;
+    margin-left: 35%;
+}
+
+.box {
+    width: 500px;
+    padding: 40px;
+    background: #191919d0;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgb(27, 25, 25);
+    height: 520px;
+    padding-top: 9%;
+    margin-top: 21%;
+}
+
+    .box .password,
+    .box .email {
+        border: 0;
+        background: none;
+        display: block;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 10px 10px;
+        width: 250px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+        margin: 20px auto;
+    }
+
+    .box P {
+        color: rgb(223, 8, 62);
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 40px;
+    }
+
+    .box h1 {
+        color: rgb(29, 226, 11);
+        margin-top: -5%;
+        font-weight: 500;
+        font-size: 30px;
+    }
+
+.email, .password, .login {
+    font-size: 16px;
+}
+
+.box .email:focus,
+.box .password:focus {
+    width: 300px;
+    border-color: #2ecc71
+}
+
+.box .login {
+    border: 0;
+    background: none;
+    display: block;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 14px;
+    margin: -10% 0% 14% 69%;
+    height: 45px;
+}
+
+    .box .login:hover {
+        background: #2ecc71
+    }
+
+hr {
+    width: 35%;
+    margin-top: 0%;
+    margin-left: 30%;
+    background-color: rgba(37, 33, 33, 0.568);
+    border: 1px solid rgba(99, 79, 79, 0.486);
+    margin-bottom: 17%;
+    color: rgb(27, 25, 25);
+}
+
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.dropdown {
+    width: 50%;
+    margin-top: 15%;
+    text-align: center;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    list-style: none;
+    height: 45px;
+    background-color: #7406db00;
+    border: 2px solid #db3450;
+    border-radius: 24px;
+    color: #ffffff;
+}
+
+
+    .dropdown option {
+        position: relative;
+        display: block;
+        padding: 0 10px;
+        height: 50px;
+        width: 100%;
+        line-height: 50px;
+        color: #ffffff;
+        text-decoration: none;
+        margin-top: -2%;
+        border-radius: 24px;
+    }
+
+    .dropdown select {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background-color: rgb(255, 38, 0);
+        width: 200px;
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: opacity .5s;
+        -o-transition: opacity .5s;
+        transition: opacity .5s;
+        border-radius: 24px;
+    }
+
+    .dropdown option {
+        height: 35px;
+        line-height: 35px;
+        color: #ffffff;
+        background-color: #444444;
+        border-radius: 24px;
+    }
+
+    .dropdown select:hover {
+        background-color: rgba(23, 23, 23, 0.9);
+        color: #ffffff;
+    }
+
+    .dropdown option:hover select {
+        background-color: rgba(23, 23, 23, 0.9);
+        color: #ffffff;
+    }
+
+    .dropdown option:hover > select {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .dropdown:hover {
+        border: 2px solid rgb(255, 38, 0)
+    }

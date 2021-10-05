@@ -1,0 +1,51 @@
+﻿body {
+    background-color: #25282b;
+}
+
+.eachNotice {
+    background-color: rgb(221, 221, 217);
+    border-radius: 16px;
+    margin-top: 5%;
+    transition: transform 0.2s ease-in;
+    padding: 2% 1% 1% 1%;
+}
+
+    .eachNotice:hover {
+        transform: scale(1.03);
+        transition: transform 0.2s ease-in;
+    }
+
+#noticeMore {
+    display: none;
+}
+
+.open {
+    display: none;
+    height: 50px;
+    width: 100px;
+    text-align: center;
+}
+
+.openBtn {
+    text-align: center;
+    margin-top: 33%;
+    border: 1px solid #c93120;
+    color: #c93120;
+    padding: 10px 23px 10px 23px;
+    border-radius: 3px;
+}
+
+    .openBtn:hover {
+        background-color: #c93120;
+        color: wheat;
+    }
+
+a {
+    text-decoration: none;
+}
+
+.addStudent {
+    border-radius: 20px;
+    padding: 2ch;
+    background-color: #DDDDD9;
+}

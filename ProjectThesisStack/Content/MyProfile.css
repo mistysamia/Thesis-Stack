@@ -1,0 +1,107 @@
+﻿body {
+    margin: 0;
+    background-color: #25282b;
+}
+
+section {
+    width: 100%;
+}
+
+#cover img {
+    width: 100%;
+}
+
+/* Players list grid start here */
+.user-grid {
+    display: grid;
+    grid-template-columns: 300px 900px;
+    grid-gap: 10px 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10%;
+    margin-top: 20px;
+}
+
+.profile-div {
+    margin-top: -120%;
+}
+
+.information-div {
+    padding: 2%;
+    background-color: rgb(233, 232, 232);
+    border-radius: 5px;
+}
+
+    .information-div h3 {
+        color: darkred;
+    }
+
+
+/* profile CSS */
+
+.card {
+    background-color: rgb(221, 221, 217);
+    border-radius: 10px;
+    height: 465px;
+}
+
+    .card img {
+        border: 3px solid rgb(124, 121, 121);
+        height: 170px;
+        width: 60%;
+        border-radius: 50%;
+        margin-top: 10%;
+    }
+
+.headings {
+    height: 80px;
+}
+
+.supervisorsDetails {
+    height: 70px;
+    background-color: rgb(26, 25, 25);
+    margin-bottom: 5%;
+    border-radius: 5px;
+}
+
+    .supervisorsDetails h3 {
+        color: tomato;
+        margin-top: 2%;
+    }
+
+    .supervisorsDetails p {
+        color: white;
+    }
+
+/* Paper CSS */
+.eachHomeNotice {
+    background-color: rgb(230, 226, 222);
+    border-radius: 16px;
+    /* width: 1100px; */
+    margin-top: 5%;
+    transition: transform 0.2s ease-in;
+    padding: 2% 1% 1% 1%;
+}
+
+    .eachHomeNotice:hover {
+        transform: scale(1.03);
+        transition: transform 0.2s ease-in;
+    }
+
+@media (max-width: 992px) {
+    .user-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .profile-div {
+        margin: auto;
+        margin-top: 0;
+    }
+}
+
+/* Responsive customization for mobile phone */
+@media (max-width: 668px) {
+    .user-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

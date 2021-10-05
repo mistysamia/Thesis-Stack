@@ -1,0 +1,230 @@
+﻿body {
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+section {
+    width: 100%;
+}
+
+#notice-heading img {
+    width: 100%;
+    margin: 10px 0;
+}
+/* CSS for Banner and highlight section starts here*/
+
+/* Banner Background */
+.video-fb-group-section {
+    background-color: #E2C29C;
+}
+
+/* Banner Grid property */
+.video-fb-group-grid, .median-cgpa-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1%;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+
+.aust-video video {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    margin-left: 8%;
+    border: 3px solid white;
+}
+
+.fb-group {
+    display: block;
+    margin: 25px auto;
+}
+
+    .fb-group img:hover {
+        transform: scale(1.05);
+        transition: transform 0.5s ease;
+    }
+
+
+/* Latest Notice List Starts here */
+
+.latest-notice-list {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    margin-top: 20px;
+    
+}
+
+    .latest-notice-list div {
+        padding: 2%;
+        margin: 3%;
+       
+        border-radius: 10px;
+        background-color: #e6ccac;
+        box-shadow: 0px 7px 29px 0px rgba(63, 63, 66, 0.521);
+
+    }
+
+.latest-notice img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.notice-open-button {
+    width: 100%;
+    padding: 2% 0;
+    border-radius: 10px;
+    background-color: #89745B;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+    .notice-open-button:hover {
+        background-color: #806749;
+        color: white;
+    }
+
+.date-of-notice {
+    color: green;
+    text-align: right;
+}
+
+/* Latest Notice List ends here */
+.median-cgpa-section {
+    background-color: #353131;
+}
+
+.median-cgpa-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    align-items: center;
+    padding: 2%;
+}
+
+.dept {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    background-color: #7B6060;
+    align-items: center;
+    margin: 10px 0;
+}
+
+    .dept:hover {
+        background-color: #e6ccac;
+        color: black;
+        transform: scale(1.05);
+        transition: transform 0.5s ease;
+    }
+
+.dept-img {
+    height: 100px;
+}
+
+.dept-name {
+    text-align: center;
+}
+
+.dept-img img {
+    border-radius: 5px;
+    border: 2px solid white;
+    width: 100%;
+    height: 100%;
+}
+
+/* Median CGPA */
+.median-cgpa-section {
+    margin-top: -10px;
+    background-color: #353131;
+}
+
+.acc-info {
+    background-color: #e6ccac;
+}
+
+.cgpa-img {
+    height: 400px;
+}
+
+    .cgpa-img img {
+        border-radius: 5px;
+        border: 2px solid white;
+        width: 100%;
+        height: 100%;
+    }
+
+#acc-button {
+    color: white;
+    background-color: #7B6060;
+}
+
+@media (max-width: 992px) {
+    .video-fb-group-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .aust-video video {
+        margin-left: 0;
+    }
+
+    .latest-notice-list {
+        grid-template-columns: repeat(2,1fr);
+    }
+    /* .latest-notice-list div{
+        height: 550px;
+    } */
+    .median-cgpa-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Responsive customization for mobile phone */
+@media (max-width: 668px) {
+    .video-fb-group-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .aust-video video {
+        margin-left: 0;
+    }
+
+    .latest-notice-list {
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .median-cgpa-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width: 375px) {
+    .video-fb-group-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .aust-video video {
+        margin-left: 0;
+    }
+
+    .latest-notice-list {
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .dept {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -1,0 +1,1194 @@
+﻿@using ProjectThesisStack.Models
+@using MongoDB.Bson
+@model ProjectThesisStack.Models.NewPaper
+
+@{
+    ViewBag.Title = "NewsFeed";
+    var papers = (List<Paper>)ViewData["papers"];
+    var teamNameMap = (Dictionary<ObjectId, Team>)ViewData["teamNameMap"];
+
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 0%;
+        }
+
+        .left {
+            background-color: rgb(26, 26, 26,1);
+        }
+
+        .right {
+            background-image: url('/Content/NewsFeed/NewsFeedBG.jpg');
+            background-repeat: repeat;
+            padding-top: 3%;
+        }
+
+
+        .ownPost {
+            background-color: #ddd0d0;
+            border-radius: 9px;
+        }
+
+        .Posting {
+            margin: 3% 5% 0% 5%;
+            padding-top: 3%;
+        }
+
+        .ownPostImgSection {
+            height: 45px;
+            width: 50px;
+        }
+
+            .ownPostImgSection img {
+                border-radius: 50%;
+                height: 100%;
+                width: 100%;
+                border: 2px solid rgba(26, 25, 25, 0.562);
+            }
+
+        .Posting input {
+            /* margin:3% 5% 0% 5%; */
+            margin-left: 2%;
+            margin-top: 0.5%;
+            border-radius: 20px;
+            height: 44px;
+            width: 100%;
+        }
+
+        .ownPostOption {
+            padding: 0% 4% 0% 4%;
+            border-radius: 7px;
+            background-color: #ddd9d0;
+        }
+
+            .ownPostOption div {
+                width: 57%;
+                height: 40px;
+            }
+
+            .ownPostOption button {
+                font-size: 17px;
+                width: 100%;
+                height: 100%;
+                background-color: #ddd9d0;
+                border-radius: 0% 0% 0% 0%;
+                color: rgb(80, 74, 62);
+            }
+
+                .ownPostOption button:hover {
+                    background-color: rgba(54, 50, 50, 0.178);
+                    border-radius: 3px;
+                }
+
+
+        .mainSection {
+            background-color: #ddd0d0;
+            border-radius: 9px;
+            padding: 3%;
+        }
+
+        .newsfeedImgSection {
+            height: 60px;
+            width: 60px;
+        }
+
+            .newsfeedImgSection img {
+                border-radius: 50%;
+                height: 100%;
+                width: 100%;
+                border: 2px solid rgba(26, 25, 25, 0.849);
+            }
+
+        .Info .date {
+            margin-top: -1%;
+            font-size: 14px;
+        }
+
+        .Info a {
+            text-decoration: none;
+            color: rgb(80, 74, 62);
+        }
+
+        .pdf {
+            height: 60px;
+            width: 50%;
+            background-color: #b8ceae;
+            border-radius: 7px;
+            padding: 1% 1% 1% 1%;
+        }
+
+        .pdfImg {
+            height: 75%;
+            width: 12%;
+        }
+
+        .pdf img {
+            height: 100%;
+            width: 100%;
+            margin-top: 25%;
+        }
+
+        .pdfDetails {
+            font-size: 14px;
+            margin-left: 3%;
+            margin-top: 2%;
+            width: 80%;
+        }
+
+
+        .PostOption {
+            border-radius: 7px;
+            background-color: rgb(178, 184, 189);
+        }
+
+            .PostOption div {
+                width: 57%;
+                height: 40px;
+            }
+
+            .PostOption button {
+                font-size: 17px;
+                width: 100%;
+                height: 100%;
+                background-color: rgb(178, 184, 189);
+                border-radius: 7px;
+                color: rgb(80, 74, 62);
+            }
+
+                .PostOption button:hover {
+                    background-color: rgba(54, 50, 50, 0.116);
+                    border-radius: 3px;
+                }
+
+
+
+        .sponsorPart {
+            margin-bottom: 60%;
+        }
+
+        .sponsorHeading {
+            margin: 5% 0% -25% 0%;
+            color: wheat;
+        }
+
+        .sponsorCard {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin: auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+            transition: all 450ms ease-out 0s;
+            overflow: hidden;
+            border-radius: 7px;
+        }
+
+            .sponsorCard .sponsorImg {
+                position: absolute;
+                min-width: 100%;
+                min-height: 100%;
+                height: 100%;
+                top: -9999px;
+                left: -9999px;
+                right: -9999px;
+                bottom: -9999px;
+                margin: auto;
+                overflow: hidden;
+            }
+
+            .sponsorCard:hover {
+                box-shadow: 0 2px 35px rgba(0, 0, 0, 0.85);
+            }
+
+                .sponsorCard:hover .text-overlay {
+                    background: rgba(255, 255, 255, 0.8);
+                    height: 50%;
+                    top: 50%;
+                    transition: all 450ms ease-in-out 0s;
+                }
+
+                .sponsorCard:hover p {
+                    height: 60px;
+                    transition: all 350ms ease-in-out 0s;
+                }
+
+                    .sponsorCard:hover p a {
+                        visibility: visible;
+                    }
+
+        .text-overlay {
+            position: relative;
+            background: rgba(255, 255, 255, 0.6);
+            width: 100%;
+            height: 40%;
+            top: 60%;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.3);
+            padding: 10px 12px;
+            overflow: hidden;
+            transition: all 450ms ease-in-out 0s;
+            cursor: pointer;
+        }
+
+            .text-overlay h2 {
+                color: rgba(0, 0, 0, 0.85);
+                letter-spacing: 0.0225em;
+                width: auto;
+                margin: 0;
+            }
+
+            .text-overlay p {
+                color: #555;
+                width: 380px;
+                height: 38px;
+                margin: 8px 0;
+                line-height: 1.25;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            .text-overlay a {
+                color: #378aee;
+                text-decoration: none;
+                transition: all 350ms linear;
+                visibility: hidden;
+            }
+
+                .text-overlay a:hover {
+                    color: #449cc5;
+                    border-bottom: 1px dotted #47a8f2;
+                }
+
+
+
+
+
+        /********************
+        **** Blog Part Starts
+        *********************/
+
+
+
+        .addImgPart {
+            height: 360px;
+            width: 390px;
+            position: absolute;
+            z-index: 200;
+        }
+
+            .addImgPart img {
+                height: 100%;
+                width: 100%;
+            }
+
+        .blog-card {
+            max-width: 390px;
+            width: 100%;
+            height: 360px;
+            position: absolute;
+            font-family: 'Droid Serif', serif;
+            color: #fff;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 0px;
+            box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: all 0.4s;
+            z-index: 201;
+            background-size: 100%;
+            margin-bottom: 100px;
+        }
+
+            .blog-card a {
+                color: #fff;
+                text-decoration: none;
+                transition: all 0.2s
+            }
+
+            .blog-card .color-overlay {
+                background: rgba(64, 84, 94,0.5);
+                width: 550px;
+                height: 500px;
+                position: absolute;
+                z-index: 10;
+                top: 0;
+                left: 0;
+                transition: background 0.3s cubic-bezier(0.33, 0.66, 0.66, 1);
+            }
+
+            .blog-card .gradient-overlay {
+                background-image: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.6) 21%);
+                width: 550px;
+                height: 500px;
+                position: absolute;
+                top: 350px;
+                left: 0;
+                z-index: 15;
+            }
+
+            .blog-card:hover {
+                box-shadow: 0px 18px 20px -9px rgba(0, 10, 30, 0.75);
+            }
+
+                .blog-card:hover .card-info {
+                    opacity: 1;
+                    bottom: 40px;
+                }
+
+                .blog-card:hover .color-overlay {
+                    background: rgba(64, 64, 70,0.8);
+                }
+
+                .blog-card:hover .title-content {
+                    margin-top: 35px;
+                }
+
+        .title-content {
+            text-align: center;
+            margin: 170px 0 0 0;
+            position: absolute;
+            z-index: 20;
+            width: 100%;
+            top: 0;
+            left: 0;
+            transition: all 0.6s
+        }
+
+        .blog-card:hover h3:after {
+            animation: changeLetter 0.3s 1 linear;
+            width: 80%
+        }
+
+        .blog-card h3, h1 {
+            font-size: 1.9em;
+            font-weight: 400;
+            letter-spacing: 1px;
+            font-family: 'Abril Fatface', serif;
+            margin-bottom: 0;
+            display: inline-block;
+        }
+
+            .blog-card h3 a {
+                text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+                transition: all 0.2s
+            }
+
+                .blog-card h3 a:hover {
+                    text-shadow: 0px 8px 20px rgba(0, 0, 0, 0.95);
+                }
+
+        h3:after {
+            content: " ";
+            display: block;
+            width: 10%;
+            height: 2px;
+            margin: 20px auto;
+            border: 0;
+            background: #BDA26B;
+            transition: all 0.2s
+        }
+
+        @@keyframes changeLetter {
+            0% {
+                width: 10%;
+            }
+
+            100% {
+                width: 80%;
+            }
+        }
+
+        .intro {
+            width: 170px;
+            margin: 0 auto;
+            color: #ddd;
+            font-style: italic;
+            line-height: 18px;
+        }
+
+            .intro a {
+                color: #ddd
+            }
+
+                .intro a:hover {
+                    text-decoration: underline
+                }
+
+        .card-info {
+            box-sizing: border-box;
+            padding: 0;
+            width: 100%;
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            margin: 0 auto;
+            padding: 0 50px;
+            font-style: 16px;
+            line-height: 24px;
+            z-index: 20;
+            opacity: 0;
+            transition: bottom 0.64s, opacity 0.63s cubic-bezier(0.33, 0.66, 0.66, 1);
+        }
+
+            .card-info a {
+                display: block;
+                width: 100px;
+                margin: 15px auto;
+                background: #fff;
+                color: #444;
+                padding: 3px 10px;
+                border-radius: 2px;
+                font-size: 0.8em
+            }
+
+                .card-info a:hover {
+                    background: #8e7c49;
+                    color: #fff;
+                }
+
+                    .card-info a:hover span {
+                        filter: brightness(10);
+                        opacity: 1
+                    }
+
+        .utility-info {
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            z-index: 20;
+            width: 100%;
+            text-align: left
+        }
+
+            .utility-info:after {
+                content: " ";
+                background: url(https://rawcdn.githack.com/Nodws/NodPen/ffad95aa5244b4b09a3c7c1508a018959bbedb7e/postItem/licons.svg) center no-repeat;
+                background-size: 30px auto;
+                display: block;
+                opacity: 0.4;
+                position: absolute;
+                bottom: 25px;
+                right: 15px;
+                width: 30px;
+                height: 15px
+            }
+
+            .utility-info a:hover {
+                text-decoration: underline
+            }
+
+        .utility-list {
+            list-style-type: none;
+            margin: 0 0 10px 20px;
+            padding: 0;
+            width: 100%;
+        }
+
+            .utility-list li {
+                margin: 0 5px 0 0;
+                padding: 3px 0 15px 0px;
+                display: inline-block;
+                font-size: 0.8em
+            }
+
+        .licon {
+            position: relative;
+            width: 23px;
+            height: 15px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+            .licon:before {
+                content: "";
+                background: url(https://rawcdn.githack.com/Nodws/NodPen/ffad95aa5244b4b09a3c7c1508a018959bbedb7e/postItem/licons.svg?) -2px -6px no-repeat;
+                background-size: 250px;
+                width: 26px;
+                height: 20px;
+                display: inline-block;
+                vertical-align: middle;
+                position: absolute;
+                top: -3px;
+                left: 0;
+            }
+
+        .icon-white {
+            filter: brightness(10);
+        }
+
+        .icon-black {
+            filter: brightness(0);
+            opacity: 0.6
+        }
+
+        .icon-like:before {
+            background-position: -183px -6px;
+        }
+
+        .icon-com:before {
+            background-position: -63px -4px;
+        }
+
+        .icon-dat:before {
+            background-position: -94px -7px;
+        }
+
+        .icon-tag:before {
+            background-position: -33px -6px;
+        }
+
+        @@media (max-width:750px) {
+            .utility-info {
+                text-align: center;
+            }
+
+                .utility-info ul {
+                    width: 100%;
+                    margin: 0;
+                    box-sizing: border-box
+                }
+
+                .utility-info li {
+                    width: 49%;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    margin: 0
+                }
+        }
+
+        @@media (max-width:500px) {
+            .utility-info li:last-of-type {
+                width: 100%
+            }
+
+            .card-info {
+                display: none
+            }
+
+            .blog-card:hover .title-content, .title-content {
+                margin-top: 40px
+            }
+
+            .blog-card {
+                height: 300px
+            }
+
+                .blog-card h3 {
+                    font-size: 1.3em
+                }
+
+            .intro {
+                font-size: 0.8em
+            }
+        }
+
+
+        /*  ================  */
+
+        /* ignore this bit :P */
+        #profile-badges:after {
+            content: "BRO";
+            font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 1px 4px 1px 4px;
+            color: black !important;
+            border-radius: 3px;
+            position: relative;
+            top: -2px;
+            text-shadow: none !important;
+            white-space: nowrap;
+            letter-spacing: 0;
+            background: #FFDD40;
+        }
+
+        .profile-header {
+            background: #333 url(https://images.unsplash.com/photo-1435783099294-283725c37230?dpr=1&auto=compress,format&fit=crop&w=1376&h=635&q=80&cs=tinysrgb&crop=&bg=) top center no-repeat;
+            background-size: cover;
+            font-size: 3em;
+            position: relative
+        }
+
+            .profile-header:after {
+                position: absolute;
+                content: "";
+                display: block;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: rgba(23, 23, 31, 0.42);
+                z-index: 0
+            }
+
+        #profile-links a {
+            font-family: 'Abril Fatface', serif;
+            font-size: 1.2em
+        }
+
+
+        .profile-links a[href*=nodws\.com]:before {
+            content: "\2616";
+            color: #0a45b5;
+            padding-right: 3px
+        }
+
+        .profile-links a[href*=twitter]:before {
+            content: "\1f426";
+            color: #08c
+        }
+
+        .profile-links a[href*=dribbble]:before {
+            content: "\26BE";
+            color: #d055bf
+        }
+
+        #following-this-user {
+            pointer-events: none
+        }
+
+        #follow-this-user {
+            font-size: 1.2em;
+            border-color: #359ef9
+        }
+
+            #follow-this-user:after {
+                content: "\1f448"
+            }
+
+        .links-and-stats {
+            background: rgb(20, 20, 21);
+        }
+
+        .profile-name h1 {
+            text-shadow: 0 6px 9px rgba(0, 0, 0, 0.48)
+        }
+
+        .profile-avatar {
+            bottom: -10px;
+            width: 150px;
+            height: 150px;
+            border: 0px solid #1E1E1E;
+            background: rgba(2, 2, 2, 0.49);
+            box-shadow: 0 19px 19px -10px rgba(0, 0, 0, 0.63)
+        }
+
+        .profile-username, .upsell, .profile-location, .primary-pro {
+            opacity: 0;
+        }
+
+        .upsell, #pen-as-header-question {
+            display: none
+        }
+
+        .profile-nav-1 a {
+            font-size: 1.2rem;
+        }
+
+            .profile-bio, .profile-nav-1 a.active, .profile-nav-1 a:hover {
+                color: rgba(20, 20, 21, 0.59) !important;
+                font-size: 1.2rem
+            }
+
+        .meta .pen-title {
+            font-family: 'Droid Serif', serif;
+            text-align: center
+        }
+
+        .pagination-button {
+            background-color: #2f2f31;
+            border-color: #2f2f31;
+            transition: all 0.2s
+        }
+
+            .pagination-button:hover {
+                box-shadow: 0 3px 8px rgba(0,0,0,0.2)
+            }
+
+        .single-project .stats, .single-pen .stats {
+            text-align: center;
+            width: 100%
+        }
+
+        .stats svg {
+            fill: #bda26b;
+        }
+
+        .stats svg, .loves .icon-heart {
+            fill: rgba(47, 47, 49, 0) !important;
+            stroke: #ba6 !important;
+            stroke-width: 0.1em !important;
+        }
+
+        .loves .icon-heart {
+            stroke-width: 0.5em !important;
+        }
+
+        .comments svg {
+            stroke-width: 0.35em !important;
+        }
+
+        .single-stat.loves.loved-1 svg {
+            stroke: #fff !important
+        }
+
+        .single-pen:hover h3:after {
+            width: 40%;
+            transition: all 0.2s
+        }
+
+        .pen-actions {
+            border: 0px !important
+        }
+
+        .meta {
+            box-shadow: none !important
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /******************
+        *******************
+        **Add Starts ******
+        ******************/
+        .choosePart {
+            position: absolute;
+            z-index: 202;
+            margin-top: 520px;
+            height: 440px;
+            width: 350px;
+            margin-left: 2%;
+            border-radius: 20px;
+            background-color: rgb(46, 39, 39);
+            padding: 2% 0% 0% 1.5%;
+        }
+
+        .choosePartImg {
+            width: 93%;
+            height: 60%;
+        }
+
+        .choosePart img {
+            border: none;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0px 0px 20px rgb(22, 21, 21);
+        }
+
+        .choosePart .card-body {
+            color: rgb(221, 216, 191)
+        }
+
+        .choosePart:hover img {
+            transform: rotate(-6deg);
+            transition: transform 0.1s ease-in;
+        }
+        /******************
+        *******************
+        **Add Ends ******
+        ******************/
+
+
+        /*************************
+        ***Right Top Contibutors**
+        **************************/
+        .left {
+            padding-top: 4%;
+        }
+
+        .rightcontributorPart {
+            padding-top: 11%;
+            width: 243px;
+        }
+
+            .rightcontributorPart h1 {
+                color: #0a45b5;
+            }
+
+        .rightTopContributors li:nth-child(odd) {
+            background-color: rgba(255, 0, 0, 0);
+            color: orangered;
+        }
+
+        .rightTopContributors li:nth-child(even) {
+            background-color: rgba(255, 0, 0, 0);
+            color: rgb(87, 206, 7);
+        }
+
+        .rightTopContributors li:hover {
+            background-color: #212224;
+            font-size: 17px;
+        }
+    </style>
+</head>
+<main>
+    <section>
+        <section style="width: 99.2%;">
+            <section class="row">
+                <!-- Left Portion Start-->
+                <article class="col-2 left">
+                    <section class="rightcontributorPart">
+                        <h1 class="mb-3">Top Contributors</h1>
+                        <section class="rightTopContributors">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">• &nbsp An item</li>
+                                <li class="list-group-item">• &nbsp A second item</li>
+                                <li class="list-group-item">• &nbsp A third item</li>
+                                <li class="list-group-item">• &nbsp A fourth item</li>
+                                <li class="list-group-item">• &nbsp And a fifth one</li>
+                                <li class="list-group-item">• &nbsp An item</li>
+                                <li class="list-group-item">• &nbsp A second item</li>
+                                <li class="list-group-item">• &nbsp A third item</li>
+                                <li class="list-group-item">• &nbsp A fourth item</li>
+                                <li class="list-group-item">• &nbsp And a fifth one</li>
+                            </ul>
+                        </section>
+                    </section>
+
+
+
+                </article>
+                <!-- Left Portion Ends-->
+                <!-- Right Portion Start-->
+                <article class="col-10 right">
+                    <section class="row">
+
+                        <!-- Main Portion Starts -->
+                        <article class="col-8 middleSection">
+
+                            @if (Session["userType"] == "Supervisor")
+                            {
+                            <form method="post">
+                                <!-- Posting Own post Starts-->
+                                <section class="ownPost mb-3">
+                                    <section class="Posting">
+                                        <article class="row">
+                                            <div class="col-1">
+                                                <div class="ownPostImgSection ">
+                                                    <img src="@(((Supervisor)Session["user"]).dp)">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-11">
+                                                <div class="input-group mb-3">
+                                                    @Html.TextBoxFor(m => m.teamName, new
+                                                    {
+                                                        @class = "form-control",
+                                                        @id = "teamName",
+                                                        type = "text",
+                                                   placeholder = "Team Name",
+                                                        required = "required"
+                                               })
+
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    @Html.TextBoxFor(m => m.paperTitle, new
+                                                    {
+                                                        @class = "form-control",
+                                                        @id = "email",
+                                                        type = "text",
+                                              placeholder = "Paper Title",
+                                                        required = "required"
+                                                   })
+
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    @Html.TextBoxFor(m => m.paperBody, new
+                                                   {
+                                                       @class = "form-control",
+                                                       @id = "paperBody",
+                                                       type = "text",
+                                             placeholder = "Paper Body",
+                                                       required = "required"
+                                                  })
+
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    @Html.TextBoxFor(m => m.tags, new
+                                                  {
+                                                      @class = "form-control",
+                                                      @id = "tags",
+                                                      type = "text",
+                                            placeholder = "Tag",
+                                                      required = "required"
+                                                 })
+
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    @Html.TextBoxFor(m => m.publicationsLink, new
+                                                 {
+                                                     @class = "form-control",
+                                                     @id = "publicationsLink",
+                                                     type = "text",
+                                           placeholder = "Publications Link",
+                                                     required = "required"
+                                                })
+
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    @Html.TextBoxFor(m => m.status, new
+                                                {
+                                                    @class = "form-control",
+                                                    @id = "status",
+                                                    type = "text",
+                                          placeholder = "Status",
+                                                    required = "required"
+                                               })
+
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    @Html.TextBoxFor(m => m.PDFLink, new
+                                               {
+                                                   @class = "form-control",
+                                                   @id = "PDFLink",
+                                                   type = "text",
+                                         placeholder = "PDF Link",
+                                                   required = "required"
+                                              })
+
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <hr>
+                                        <section class="ownPostOption mb-4 ">
+                                            <section class="d-flex justify-content-end">
+                                               
+
+                                                <div class=" lastButton">
+                                                    <button class="btn px-5"> <i class="fas fa-upload">&nbsp;</i>Submit </button>
+                                                </div>
+                                            </section>
+
+                                        </section>
+                                    </section>
+                                </section>
+                                <!-- Posting Own post Starts-->
+                            </form>
+                                
+                                  
+                                
+                            }
+
+
+
+                            @foreach (var paper in papers)
+                            {
+
+
+                                <!-- NewsFeed Starts -->
+                                <section class="mainSection my-4 ">
+                                    <article class="row">
+                                        <section class="col-1">
+                                            <div class="newsfeedImgSection ">
+                                                <img src="@(teamNameMap[paper.teamID].dp)">
+                                            </div>
+                                        </section>
+
+                                        <section class="col-11 mainPost">
+                                            <section class="me-5 ms-2">
+                                                <section class="Info">
+                                                    <h4>@(teamNameMap[paper.teamID].teamName)</h4>
+                                                    <p class="date">@(paper.publicationDate)</p>
+                                                    <h4>@(paper.title) </h4>
+                                                    <p>
+                                                        @(paper.body)
+                                                    </p>
+                                                    <a href="@(paper.fileLink)" target="_blank">
+                                                        <article class="pdf d-flex">
+                                                            <div class="pdfImg">
+                                                                <img src="~/Content/NewsFeed/pdf.png">
+                                                            </div>
+                                                            <div class="pdfDetails">
+                                                                <p>@(paper.title).pdf</p>
+                                                            </div>
+                                                        </article>
+                                                    </a>
+
+
+                                                    <!-- Interaction Part Starts -->
+                                                    <section class="PostOption my-4 ">
+                                                        <section class="d-flex justify-content-evenly">
+                                                            <div class="FirstButton">
+                                                                <button class="btn px-5">
+                                                                    <i class="fas fa-thumbs-up">&nbsp;</i>Like
+                                                                </button>
+                                                            </div>
+                                                            <div class="">
+                                                                <button class="btn px-5">
+                                                                    <i class="fas fa-comment">&nbsp;</i>Comment
+                                                                </button>
+                                                            </div>
+
+                                                            <div class=" lastButton">
+                                                                <button class="btn px-5">
+                                                                    <i class="fas fa-share-alt">&nbsp;</i>Share
+                                                                </button>
+                                                            </div>
+                                                        </section>
+                                                    </section>
+                                                    <!-- Interaction Part Ends -->
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </article>
+                                </section>
+                                <!-- NewsFeed Ends -->
+                            }
+                        </article>
+                        <!-- Main Portion Ends -->
+                        <!-- Main Portion Right part Starts -->
+                        <article class="col-4 rightSection">
+                            <!-- Sponsor Starts -->
+
+                            <section class="sponsorPart">
+                                <h1 class="sponsorHeading">Sponsor</h1>
+                                <section class="my-5">
+
+                                    <div class="sponsorCard">
+                                        <img class="sponsorImg"
+                                             src="https://user-images.githubusercontent.com/16360374/37567282-e1932872-2a81-11e8-807b-efc5a997f2f1.jpg" />
+                                        <div class="text-overlay">
+                                            <h2>TITLE</h2>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales
+                                                posuere felis non efficitur. Mauris mollis elit urna, id tempus...
+                                                &nbsp;&nbsp;<a href="#" class="read-more">Read More</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="my-5">
+
+                                    <div class="sponsorCard">
+                                        <img class="sponsorImg"
+                                             src="https://user-images.githubusercontent.com/16360374/37567282-e1932872-2a81-11e8-807b-efc5a997f2f1.jpg" />
+                                        <div class="text-overlay">
+                                            <h2>TITLE</h2>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales
+                                                posuere felis non efficitur. Mauris mollis elit urna, id tempus...
+                                                &nbsp;&nbsp;<a href="#" class="read-more">Read More</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+                            <!-- Sponsor Ends -->
+                            <!-- Add part Starts -->
+                            <section class="my-5">
+                                <section>
+                                    <div class="addImgPart">
+                                        <img src="~/Content/NewsFeed/add1.jpg" alt="">
+                                    </div>
+                                    <div class="blog-card spring-fever">
+                                        <div class="title-content">
+                                            <h3><a href="#">Thesis Title</a></h3>
+
+                                        </div>
+                                        <div class="card-info mt-4">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor
+                                                incididunt ut labore et dolore magna aliqua. Ut enim ad miniLorem Lorem
+                                                ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                            </p>
+
+
+                                            <a href="#">Read <span class="licon icon-arr icon-black"></span></a>
+                                        </div>
+                                        <div class="utility-info">
+                                            <ul class="utility-list">
+                                                <li><span class="licon icon-like"></span><a href="#">2</a></li>
+                                                <li><span class="licon icon-com"></span><a href="#">12</a></li>
+                                                <li><span class="licon icon-dat"></span>03 jun 2017</li>
+                                                <li>
+                                                    <span class="licon icon-tag"></span><a href="#">Python</a>, <a href="#">Deep Learning</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="gradient-overlay"></div>
+                                        <div class="color-overlay"></div>
+                                    </div>
+                                </section>
+                            </section>
+                            <!-- Add Part Ends -->
+                            <!-- Choose Part Starts  -->
+                            <section>
+                                <section class="choosePart ">
+                                    <div class="choosePartImg">
+                                        <img src="~/Content/NewsFeed/add2.jpg" class="" alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">Thesis Title</h4>
+                                        <p class="card-text">
+                                            Some quick example text to build on the card title and make
+                                            up the bulk of the card's content.
+                                        </p>
+                                    </div>
+                                </section>
+                            </section>
+
+
+                            <!-- Choose Part Ends -->
+
+
+
+                        </article>
+                        <!-- Main Portion Right part Ends -->
+                    </section>
+                </article>
+                <!-- Right Portion Ends-->
+            </section>
+        </section>
+
+    </section>
+
+</main>
+
+
+
+<script src="~/Scripts/react/react.min.js"></script>
+<script src="~/Scripts/JS UI/Login.js"></script>
+<script src="~/bundles/jquery-3.3.1.min.js"></script>
+<script src="~/bundles/popper.min.js"></script>
+<script src="~/bundles/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<!-- font awesome  -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+<script src="https://kit.fontawesome.com/87ffe8273c.js" crossorigin="anonymous"></script>
+
+
+<!-- Font Link -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200&family=Nunito+Sans:wght@300&display=swap"
+      rel="stylesheet">
+

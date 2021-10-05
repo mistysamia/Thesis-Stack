@@ -1,0 +1,190 @@
+﻿@using ProjectThesisStack.Models ;
+@model ProjectThesisStack.Models.Admin
+
+@{
+    ViewBag.Title = "AdminList";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+    var adminList = (List<Admin>) ViewData["adminList"];
+}
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-image: url('/Content/adminBg.jpg');
+            background-position: center;
+            background-size: auto;
+            opacity: 10;
+            background-repeat: no-repeat;
+        }
+
+        .input-form {
+            margin-top: 50px;
+        }
+
+        .header {
+            width: 1000px;
+            background-color: rgba(0,0,0,0.8);
+            color: #fff;
+            margin: auto;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .input-fields {
+            background-color: rgba(31, 29, 29, 0.9);
+            width: 1000px;
+            margin: auto;
+            box-shadow: 0px 0px 20px rgb(27, 25, 25);
+            border-radius: 0 0 15px 15px;
+        }
+
+        form {
+            padding: 10px 110px;
+        }
+
+        .field, .dropdown {
+            border: 2px solid green;
+            border-radius: 15px;
+            padding: 8px 10px;
+            margin: 5px auto;
+            width: 750px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            text-align: center;
+            margin-left: 13%;
+        }
+
+        .dropdown {
+            width: 775px;
+        }
+
+        .submit-button {
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 8px 10px;
+            margin: 5px auto;
+            width: 200px;
+            background-color: green;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            margin: 10px 300px;
+        }
+
+        label {
+            color: gray;
+        }
+    </style>
+</head>
+
+
+<section class="addNewAdmin" onload="clearForm()"  style="margin-top:5%;">
+    <form method="post">
+        <div class="header">
+            <h2>Add New Admin</h2>
+        </div>
+
+        <div class="input-fields">
+
+            @Html.TextBoxFor(m => m.name, new
+            {
+                @class = "field",
+           @id = "name",
+                placeholder = "Admin Name",
+                required = "required",
+           type = "text",
+                name = "name"
+       })
+            @Html.TextBoxFor(m => m.email, new
+            {
+                @class = "field",
+           @id = "email",
+                type = "email",
+                placeholder = "Email (aust domain)",
+                required = "required",
+           name = "email"
+       })
+
+            @Html.TextBoxFor(m => m.password, new
+            {
+                @class = "field",
+           @id = "password",
+                placeholder = "Password",
+                required = "required",
+           name = "password",
+                type = "password"
+            })
+
+
+            @Html.TextBoxFor(m => m.contactNO, new
+            {
+                @class = "field",
+           @id = "contactNO",
+                placeholder = "Mobile No. 01xxxxxxxxx",
+           pattern = "^01[0-9].{8}$",
+                required = "required",
+                type = "text",
+           name = "contactNo"
+       })
+
+            @Html.TextBoxFor(m => m.dp, new { @class = "field",
+           @id = "dp", type = "url", placeholder = "Photograph Link", required = "required",
+           name = "dp"
+       })
+
+            <input class="submit-button" type="submit" name="submitBtn" value="SUBMIT">
+
+        </div>
+    </form>
+</section>
+<script>
+    function clearForm() {
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("contactNO").value = "";
+        document.getElementById("dp").value = "";
+    }
+</script>
+
+
+<section class="mt-5" style="text-align:center;">
+    <h1 style="color:white;">Admin List</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="table-success" scope="col">Name</th>
+                <th class="table-success" scope="col">Email</th>
+                <th class="table-success" scope="col">Contact Number</th>
+                <th class="table-success" scope="col">DP</th>
+            </tr>
+        </thead>
+        @foreach (var admin in adminList)
+        {
+            <tr class="table-light">
+                <td>@(admin.name)</td>
+                <td>@(admin.email)</td>
+                <td>@(admin.contactNO)</td>
+                <td><img src="@(admin.dp)" style="max-height:50px" /></td>
+            </tr>
+        }
+    </table>
+</section>
+
+
+<script src="~/bundles/jquery-3.3.1.min.js"></script>
+<script src="~/bundles/popper.min.js"></script>
+<script src="~/bundles/bootstrap.min.js"></script>
+<script src="~/Scripts/JS UI/Notice.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>

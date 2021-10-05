@@ -1,0 +1,365 @@
+﻿@using ProjectThesisStack.Models ;
+@using MongoDB.Bson;
+@using MongoDB.Driver;
+@{
+    ViewBag.Title = "Notice";
+    var notices = (List<Notice>)ViewData["notices"];
+    var featuredNotice = (List<Notice>)ViewData["notices2"];
+
+    var collCG = (IMongoCollection<MedianCGPA>)ViewData["collCG"];
+
+    var cseY3S1 = collCG.Find(x => x.department == "CSE" && x.semester == "Y3S1").ToList<MedianCGPA>()[0];
+    var cseY3S2 = collCG.Find(x => x.department == "CSE" && x.semester == "Y3S2").ToList<MedianCGPA>()[0];
+    var cseY4S1 = collCG.Find(x => x.department == "CSE" && x.semester == "Y4S1").ToList<MedianCGPA>()[0];
+    var cseY4S2 = collCG.Find(x => x.department == "CSE" && x.semester == "Y4S2").ToList<MedianCGPA>()[0];
+
+    var eeeY3S1 = collCG.Find(x => x.department == "EEE" && x.semester == "Y3S1").ToList<MedianCGPA>()[0];
+    var eeeY3S2 = collCG.Find(x => x.department == "EEE" && x.semester == "Y3S2").ToList<MedianCGPA>()[0];
+    var eeeY4S1 = collCG.Find(x => x.department == "EEE" && x.semester == "Y4S1").ToList<MedianCGPA>()[0];
+    var eeeY4S2 = collCG.Find(x => x.department == "EEE" && x.semester == "Y4S2").ToList<MedianCGPA>()[0];
+
+    var ceY3S1 = collCG.Find(x => x.department == "CE" && x.semester == "Y3S1").ToList<MedianCGPA>()[0];
+    var ceY3S2 = collCG.Find(x => x.department == "CE" && x.semester == "Y3S2").ToList<MedianCGPA>()[0];
+    var ceY4S1 = collCG.Find(x => x.department == "CE" && x.semester == "Y4S1").ToList<MedianCGPA>()[0];
+    var ceY4S2 = collCG.Find(x => x.department == "CE" && x.semester == "Y4S2").ToList<MedianCGPA>()[0];
+
+    var teY3S1 = collCG.Find(x => x.department == "TE" && x.semester == "Y3S1").ToList<MedianCGPA>()[0];
+    var teY3S2 = collCG.Find(x => x.department == "TE" && x.semester == "Y3S2").ToList<MedianCGPA>()[0];
+    var teY4S1 = collCG.Find(x => x.department == "TE" && x.semester == "Y4S1").ToList<MedianCGPA>()[0];
+    var teY4S2 = collCG.Find(x => x.department == "TE" && x.semester == "Y4S2").ToList<MedianCGPA>()[0];
+
+    var meY3S1 = collCG.Find(x => x.department == "ME" && x.semester == "Y3S1").ToList<MedianCGPA>()[0];
+    var meY3S2 = collCG.Find(x => x.department == "ME" && x.semester == "Y3S2").ToList<MedianCGPA>()[0];
+    var meY4S1 = collCG.Find(x => x.department == "ME" && x.semester == "Y4S1").ToList<MedianCGPA>()[0];
+    var meY4S2 = collCG.Find(x => x.department == "ME" && x.semester == "Y4S2").ToList<MedianCGPA>()[0];
+
+    var ipeY3S1 = collCG.Find(x => x.department == "IPE" && x.semester == "Y3S1").ToList<MedianCGPA>()[0];
+    var ipeY3S2 = collCG.Find(x => x.department == "IPE" && x.semester == "Y3S2").ToList<MedianCGPA>()[0];
+    var ipeY4S1 = collCG.Find(x => x.department == "IPE" && x.semester == "Y4S1").ToList<MedianCGPA>()[0];
+    var ipeY4S2 = collCG.Find(x => x.department == "IPE" && x.semester == "Y4S2").ToList<MedianCGPA>()[0];
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+
+    <link href="~/Content/Notice.css" rel="stylesheet">
+</head>
+<section class="">
+    @{var id = 0; }
+
+    <!-- video and facebook group -->
+    <section class="video-fb-group-section">
+        <div class="video-fb-group-grid">
+            <div class="aust-video">
+                <video controls autoplay muted>
+                    <source src="https://www.aust.edu/images/10000000_640454446616548_4882378903315601796_n.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="fb-group">
+                <a href="https://www.facebook.com/groups/1743009186009279" target="_blank"><img src="~/Content/fb-1.png" class="fb-group" /></a>
+                <a href="https://www.facebook.com/groups/aust.programmers" target="_blank"><img src="~/Content/fb-2.png" class="fb-group" /></a>
+                <a href="https://www.facebook.com/groups/384117345289020" target="_blank"><img src="~/Content/fb-3.png" class="fb-group" /></a>
+                <a href="https://www.facebook.com/groups/264475047095292" target="_blank"><img src="~/Content/fb-4.png" class="fb-group" /></a>
+                <!-- <a href="https://www.youtube.com/" target="_blank"><img src="images/fb-1.png" class="fb-group" /></a> -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- latest Notice title -->
+    <section>
+        <div id="notice-heading">
+            <img src="~/Content/notice-featured.png" />
+        </div>
+    </section>
+
+    <!-- latest notice list -->
+
+    <section>
+        <div class="latest-notice-list">
+            @foreach (var notice in featuredNotice)
+            {
+                <div class="latest-notice" style="height:520px;">
+                    <img src="@(notice.dp)" alt="">
+                    <h3>@(notice.title)</h3>
+                    <p>
+                        @(notice.body)
+                    </p>
+                    <i>
+                        <p class="date-of-notice"><strong> @(notice.date)</strong></p>
+                    </i>
+
+                    <a href=" @(notice.bodyLink)" target="_blank" type="button" class="notice-open-button">
+                        CLICK
+                        TO OPEN
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+
+    <!-- Median CGPA title -->
+    <section>
+        <div id="notice-heading">
+            <img src="~/Content/median-CGPA-title.png" />
+        </div>
+    </section>
+
+    <!-- Median CGPA of each Department -->
+    <Section class="median-cgpa-section">
+        <div class="median-cgpa-grid">
+            <div class="median">
+                <div>
+                    <h4 style="text-align:center; color: white;" id="department-name">Department Name</h4>
+                    <div class="cgpa-img">
+                        <img src="~/Content/Department/CSE.jpeg" id="department-image" />
+                    </div>
+                    <div class="cgpa-info">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed " id="acc-button" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                        <h4>Semester: 3.1</h4>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse  acc-info"
+                                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            <strong>Median CGPA:</strong> <span id="md31">@(cseY3S1.medianCG)</span><br>
+                                            <strong>Maximum CGPA:</strong> <span id="mx31">@(cseY3S1.maxCG)</span><br>
+                                            <strong>Number of Students:</strong> <span id="ns31">@(cseY3S2.totalStudents)</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed " type="button" id="acc-button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                        <h4>Semester: 3.2</h4>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse acc-info"
+                                     aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            <strong>Median CGPA:</strong> <span id="md32">@(cseY3S2.medianCG)</span><br>
+                                            <strong>Maximum CGPA:</strong> <span id="mx32">@(cseY3S2.maxCG)</span><br>
+                                            <strong>Number of Students:</strong> <span id="ns32">@(cseY3S2.totalStudents)</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" id="acc-button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                        <h4>Semester: 4.1</h4>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse acc-info"
+                                     aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            <strong>Median CGPA:</strong> <span id="md41">@(cseY4S1.medianCG)</span><br>
+                                            <strong>Maximum CGPA:</strong> <span id="mx41">@(cseY4S1.maxCG)</span><br>
+                                            <strong>Number of Students:</strong> <span id="ns41">@(cseY4S1.totalStudents)</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" id="acc-button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseFour"
+                                            aria-expanded="false" aria-controls="flush-collapseFour">
+                                        <h4>Semester: 4.2</h4>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse acc-info"
+                                     aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <p>
+                                            <strong>Median CGPA:</strong> <span id="md42">@(cseY4S2.medianCG)</span><br>
+                                            <strong>Maximum CGPA:</strong> <span id="mx42">@(cseY4S2.maxCG)</span><br>
+                                            <strong>Number of Students:</strong> <span id="ns42">@(cseY4S2.totalStudents)</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dept-list">
+                <div class="dept" onclick="showCGPA('Computer Science and Engineering', '/Content/Department/CSE.jpeg',
+                            @(cseY3S1.medianCG), @(cseY3S1.maxCG), @(cseY3S1.totalStudents),
+                            @(cseY3S2.medianCG), @(cseY3S2.maxCG), @(cseY3S2.totalStudents),
+                            @(cseY4S1.medianCG), @(cseY4S1.maxCG), @(cseY4S1.totalStudents),
+                            @(cseY4S2.medianCG), @(cseY4S2.maxCG), @(cseY4S2.totalStudents)
+                    )">
+                    <div class="dept-img">
+                        <img src="~/Content/Department/CSE.jpeg" />
+                    </div>
+                    <div class="dept-name">
+                        <h4>Department of<br>Computer Science and Engineering (CSE)</h4>
+                    </div>
+                </div>
+
+                <div class="dept"
+                     onclick="showCGPA('Electrical & Electronics Engineering (EEE)', '/Content/Department/EEE.jpeg',
+                            @(eeeY3S1.medianCG), @(eeeY3S1.maxCG), @(eeeY3S1.totalStudents),
+                            @(eeeY3S2.medianCG), @(eeeY3S2.maxCG), @(eeeY3S2.totalStudents),
+                            @(eeeY4S1.medianCG), @(eeeY4S1.maxCG), @(eeeY4S1.totalStudents),
+                            @(eeeY4S2.medianCG), @(eeeY4S2.maxCG), @(eeeY4S2.totalStudents)
+                    )">
+                    <div class=" dept-img">
+                        <img src="~/Content/Department/EEE.jpeg" />
+                    </div>
+                    <div class="dept-name">
+                        <h4>Department of<br>Electrical & Electronics Engineering (EEE)</h4>
+                    </div>
+                </div>
+
+                <div class="dept" onclick="showCGPA('Civil Engineering (CE)', '/Content/Department/CE.jpeg',
+                            @(ceY3S1.medianCG), @(ceY3S1.maxCG), @(ceY3S1.totalStudents),
+                            @(ceY3S2.medianCG), @(ceY3S2.maxCG), @(ceY3S2.totalStudents),
+                            @(ceY4S1.medianCG), @(ceY4S1.maxCG), @(ceY4S1.totalStudents),
+                            @(ceY4S2.medianCG), @(ceY4S2.maxCG), @(ceY4S2.totalStudents)
+                )">
+                    <div class="dept-img">
+                        <img src="~/Content/Department/CE.jpeg" />
+                    </div>
+                    <div class="dept-name">
+                        <h4>Department of<br>Civil Engineering (CE)</h4>
+                    </div>
+                </div>
+
+                <div class="dept" onclick="showCGPA('Mechanical Engineering (ME)', '/Content/Department/MPE.jpg',
+                            @(meY3S1.medianCG), @(meY3S1.maxCG), @(meY3S1.totalStudents),
+                            @(meY3S2.medianCG), @(meY3S2.maxCG), @(meY3S2.totalStudents),
+                            @(meY4S1.medianCG), @(meY4S1.maxCG), @(meY4S1.totalStudents),
+                            @(meY4S2.medianCG), @(meY4S2.maxCG), @(meY4S2.totalStudents)
+                )">
+                    <div class="dept-img">
+                        <img src="~/Content/Department/MPE.jpg" />
+                    </div>
+                    <div class="dept-name">
+                        <h4>Department of<br>Mechanical Engineering (ME)</h4>
+                    </div>
+                </div>
+
+                <div class="dept" onclick="showCGPA('Textile Engineering (TE)', '/Content/Department/TE.jpeg',
+                            @(teY3S1.medianCG), @(teY3S1.maxCG), @(teY3S1.totalStudents),
+                            @(teY3S2.medianCG), @(teY3S2.maxCG), @(teY3S2.totalStudents),
+                            @(teY4S1.medianCG), @(teY4S1.maxCG), @(teY4S1.totalStudents),
+                            @(teY4S2.medianCG), @(teY4S2.maxCG), @(teY4S2.totalStudents)
+                )">
+                    <div class="dept-img">
+                        <img src="~/Content/Department/TE.jpeg" />
+                    </div>
+                    <div class="dept-name">
+                        <h4>Department of<br>Textile Engineering (TE)</h4>
+                    </div>
+                </div>
+
+                <div class="dept" onclick="showCGPA('Industrial Production Engineering (IPE)', '/Content/Department/AS.png',
+                            '@(ipeY3S1.medianCG)', '@(ipeY3S1.maxCG)', '@(ipeY3S1.totalStudents)',
+                            '@(ipeY3S2.medianCG)', '@(ipeY3S2.maxCG)', '@(ipeY3S2.totalStudents)',
+                            '@(ipeY4S1.medianCG)', '@(ipeY4S1.maxCG)', '@(ipeY4S1.totalStudents)',
+                            '@(ipeY4S2.medianCG)', '@(ipeY4S2.maxCG)', '@(ipeY4S2.totalStudents)'
+                )">
+                    <div class="dept-img">
+                        <img src="~/Content/Department/AS.png" />
+                    </div>
+                    <div class="dept-name">
+                        <h4>Department of<br>Arts and Science (A&S)</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </Section>
+
+
+    <!-- Featured Notice title -->
+    <section>
+        <div id="notice-heading">
+            <img src="~/Content/notice-latest.png" />
+        </div>
+    </section>
+
+    <!-- Featured notice list -->
+    <section>
+        <div class="latest-notice-list">
+            @foreach (var notice in notices)
+            {
+                <div class="latest-notice">
+                    <h3>@(notice.title)</h3>
+                    <p>
+                        @(notice.body)
+                    </p>
+                    <i>
+                        <p class="date-of-notice"><strong>@(notice.date)</strong></p>
+                    </i>
+                    <a href="@(notice.bodyLink)" target="_blank" type="button" class="notice-open-button">
+                        CLICK
+                        TO OPEN
+                    </a>
+                </div>
+            }
+
+        </div>
+    </section>
+    @*}*@
+</section>
+<script src="~/bundles/jquery-3.3.1.min.js"></script>
+<script src="~/bundles/popper.min.js"></script>
+<script src="~/bundles/bootstrap.min.js"></script>
+<script src="~/Scripts/JS UI/Notice.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<script>
+    function showCGPA(department, imageLink, md31, mx31, ns31, md32, mx32, ns32, md41, mx41, ns41, md42, mx42, ns42) {
+        document.getElementById("department-name").innerText = department;
+        document.getElementById("department-image").src = imageLink;
+
+        document.getElementById("md31").innerText = md31;
+        document.getElementById("mx31").innerText = mx31;
+        document.getElementById("ns31").innerText = ns31;
+
+        document.getElementById("md32").innerText = md32;
+        document.getElementById("mx32").innerText = mx32;
+        document.getElementById("ns32").innerText = ns32;
+
+        document.getElementById("md41").innerText = md41;
+        document.getElementById("mx41").innerText = mx41;
+        document.getElementById("ns41").innerText = ns41;
+
+        document.getElementById("md42").innerText = md42;
+        document.getElementById("mx42").innerText = mx42;
+        document.getElementById("ns42").innerText = ns42;
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+
+
+
+

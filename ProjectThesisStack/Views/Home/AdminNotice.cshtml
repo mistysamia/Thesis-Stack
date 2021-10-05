@@ -1,0 +1,234 @@
+﻿@using ProjectThesisStack.Models ;
+@model ProjectThesisStack.Models.Notice
+@{
+    ViewBag.Title = "AdminNotice";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-image: url('/Content/adminBg.jpg');
+            background-position: center;
+            background-size: auto;
+            opacity: 10;
+          
+        }
+
+        .input-form {
+            margin-top: 50px;
+           
+        }
+
+        .header {
+            width: 1000px;
+            background-color: rgba(0,0,0,0.8);
+            color: #fff;
+            margin: auto;
+            padding: 10px 0;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .input-fields {
+            background-color: rgba(31, 29, 29, 0.9);
+            width: 1000px;
+            margin: auto;
+            box-shadow: 0px 0px 20px rgb(27, 25, 25);
+            border-radius: 0 0 15px 15px;
+         
+        }
+
+     
+
+        .field, .dropdown {
+            border: 2px solid green;
+            border-radius: 15px;
+            padding: 8px 10px;
+            margin: 5px auto;
+            width: 750px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            text-align: center;
+            margin-left: 13%;
+        }
+
+        .dropdown {
+            width: 775px;
+        }
+
+        .submit-button {
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 8px 10px;
+            margin: 5px auto;
+            width: 200px;
+            background-color: green;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            margin: 10px 300px;
+        }
+
+        label {
+            color: gray;
+        }
+
+
+        .eachNotice {
+            background-color: rgb(221, 221, 217);
+            border-radius: 16px;
+            margin-top: 5%;
+            transition: transform 0.2s ease-in;
+            padding: 2% 1% 1% 1%;
+            
+        }
+
+            .eachNotice:hover {
+                transform: scale(1.03);
+                transition: transform 0.2s ease-in;
+            }
+
+        #noticeMore {
+            display: none;
+        }
+
+        .open {
+            display: none;
+            height: 50px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .openBtn {
+            text-align: center;
+            margin-top: 33%;
+            border: 1px solid #c93120;
+            color: #c93120;
+            padding: 10px 23px 10px 23px;
+            border-radius: 3px;
+        }
+
+            .openBtn:hover {
+                background-color: #c93120;
+                color: wheat;
+            }
+
+        a {
+            text-decoration: none;
+        }
+
+        .publishNotice {
+            border-radius: 20px;
+            padding: 2ch;
+           
+        }
+    </style>
+</head>
+
+
+<section class="addNotice publishNotice" onload="clearForm()"  style="margin-top:5%;">
+    <form method="post">
+        <div class="input-form">
+            <div class="header">
+                <h2>Publish Notice</h2>
+            </div>
+
+            <div class="input-fields" >
+               
+                    @Html.TextBoxFor(m => m.title, new
+                    {
+                        @class = "field",
+                   @id = "addNoticeTitle",
+                        placeholder = "Notice Title",
+                        required = "required",
+                   type = "text",
+                        name = "title"
+               })
+
+                    @Html.TextAreaFor(m => m.body, new
+                    {
+                        @class = "field",
+                   @id = "addNoticeBody",
+                        placeholder = "Notice Body (Max. 200 characters)",
+                   required = "required",
+                        maxlength = "200",
+                   type = "text",
+                   name = "title"
+               })
+
+                    @Html.TextBoxFor(m => m.bodyLink, new
+                    {
+                        @class = "field",
+                        @id = "addNoticeLink",
+                   type = "url",
+                        placeholder = "PDF Link",
+                        required = "required",
+                   name = "pdfLink"
+               })
+
+                    @Html.TextBoxFor(m => m.dp, new { @class = "field",
+                   @id = "addNoticeDP", type = "url", placeholder = "Display Picture", required = "required",
+                   name = "dpLink"
+               })
+
+      
+                    <input class="submit-button" type="submit" name="submitBtn" value="SUBMIT">
+            
+            </div>
+
+        </div>
+    </form>
+</section>
+<script>
+    function clearForm() {
+        document.getElementById("addNoticeTitle").value = "";
+        document.getElementById("addNoticeBody").value = "";
+        document.getElementById("addNoticeLink").value = "";
+        document.getElementById("addNoticeDP").value = "";
+        document.getElementById("featuredBox").checked = false;
+    }
+</script>
+
+<section class="container">
+    @{var id = 0; }
+    @foreach (var notice in (List<Notice>)ViewData["notices"])
+    {
+        <article class="eachNotice" id="notice@(id)">
+
+            <h2 class="text-danger">@notice.title</h2>
+            <p>
+                @notice.body <span id="seeMoreDots@(id)">... </span>
+                <span id="noticeMore@(id)">
+                    <a href="@(notice.bodyLink)">  </a>
+                </span>
+                <!-- See More Button-->
+                <a href="javascript:seeMoreFunction(@(id));" class="text-primary " id="seeMore@(id)">See More>> </a>
+            </p>
+
+            <p class="fst-italic text-end text-success">Published on : @notice.date</p>
+
+            <div class="open" id="openBtn@(id)">
+                <a class="openBtn" href="@notice.bodyLink" formtarget="_blank">
+                    Open
+                </a>
+            </div>
+
+            @{id++;}
+        </article>
+    }
+</section>
+<script src="~/bundles/jquery-3.3.1.min.js"></script>
+<script src="~/bundles/popper.min.js"></script>
+<script src="~/bundles/bootstrap.min.js"></script>
+<script src="~/Scripts/JS UI/Notice.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>

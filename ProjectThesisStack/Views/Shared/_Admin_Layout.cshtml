@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <!-- Font Awesome link -->
+    <script src="https://kit.fontawesome.com/87ffe8273c.js" crossorigin="anonymous"></script>
+
+    @Styles.Render("~/Content/navBar.css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .navbar-brand img {
+            height: 2rem;
+        }
+</style>
+</head>
+
+    <body >
+
+     
+            <nav class="  navbar fixed-top navbar-expand-lg navbar-dark HeaderBgColor d-flex justify-content-between ">
+                <section class="container-fluid ">
+                    <article class="d-flex justify-content-between">
+                        <div class="Logo">
+                            <a class="navbar-brand" href="#">
+                                <img style="width: 40%;" src="~/Content/demologo.svg">
+                            </a>
+                        </div>
+                        <div>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </article>
+                    <article class="collapse navbar-collapse   " id="navbarNavAltMarkup">
+                        <div class=" d-flex justify-content-evenly navbar-nav  ">
+                            <a class="nav-link px-3 pageName" aria-current="page" href="@Url.Action("Index","Home/AdminStudents")">STUDENTS</a>
+                            <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/AdminSupervisors")">SUPERVISORS</a>
+                            <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/AdminNotice")">NOTICE</a>
+                            <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/AdminCG")">MEDIAN-CGPA</a>
+                            <a class="nav-link px-3 pageName" href="@Url.Action("Index","Home/AdminList")">ADMINS</a>
+                            <!-- <a class="nav-link px-4" href="" tabindex="-1" aria-disabled="true">Contact</a> -->
+                            <a class="nav-link  px-3 pageName" href="@Url.Action("Index","Home/Logout")">
+                                LOGOUT
+
+
+                            </a>
+                        </div>
+                    </article>
+                </section>
+            </nav>
+      
+
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+
+</html>

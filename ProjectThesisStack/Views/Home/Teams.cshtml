@@ -1,0 +1,902 @@
+﻿@using ProjectThesisStack.Models
+@using MongoDB.Bson
+@{
+    ViewBag.Title = "Teams";
+    var studentMap = (Dictionary<ObjectId, Student>)ViewData["studentMap"];
+    var supervisorMap = (Dictionary<ObjectId, Supervisor>)ViewData["supervisorMap"];
+
+}
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+
+
+
+    <style>
+
+        body {
+            margin: 0;
+            background-color: #ddd0d0;
+        }
+
+        .headerImg {
+            width: 100%;
+            height: 800px;
+        }
+
+            .headerImg img {
+                width: 100%;
+                height: 100%;
+            }
+
+        .recentText {
+        }
+
+
+        .leftSection {
+        }
+
+        .leftSectionPart {
+            background-color: rgba(26, 26, 24, 0.103);
+            border-radius: 12px;
+        }
+
+        .recentTeams {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            background-color: rgba(209, 205, 205, 0);
+            width: 100%;
+            margin-top: 7%;
+            padding-left: 5%;
+            border-radius: 17px;
+            margin-left: 1%;
+        }
+
+        .recentTeamheading {
+            margin-left: 6%;
+            margin-top: 5%;
+            margin-bottom: -7%;
+        }
+
+        /*****************/
+        /* Teams Starts */
+        /****************/
+
+        .each-TeamSection {
+            width: 500px;
+        }
+
+        .each-Team {
+            margin-top: 40px;
+            background-color: rgb(221, 221, 217);
+            border-radius: 10px;
+            height: 350px;
+            width: 92%;
+            transition: transform 0.4s ease-in;
+            box-shadow: 0px 0px 20px black;
+            padding-bottom: 19%;
+        }
+
+            .each-Team .imgPart {
+                height: 100px;
+                width: 130px;
+                border: 1px solid red;
+                margin: 12% 0% 0% 8%;
+                border-radius: 5px;
+                box-shadow: 0px 0px 20px rgb(90, 87, 87);
+                border: 1px solid rgb(90, 87, 87);
+            }
+
+            .each-Team img {
+                height: 100%;
+                width: 100%;
+            }
+
+        .each-card-Design {
+            background: rgb(8,7,27);
+            background: linear-gradient(90deg, rgba(8,7,27,1) 15%, rgba(30,24,97,1) 50%, rgba(4,5,29,1) 87%);
+            height: 80px;
+            border-radius: 10px 10px 0px 0px;
+        }
+
+        .eachCardLeftPart {
+            margin: 6% 0% 0% 10%;
+        }
+
+        .headings {
+            margin-top: 15%;
+            color: rgb(187, 174, 92);
+        }
+
+        .headingsPart {
+            margin-left: -22%;
+        }
+
+            .headingsPart p {
+                margin-top: 8%;
+                margin-bottom: 9%;
+                font-size: 17px;
+            }
+
+        .TeamDetailsList {
+            font-size: 40px;
+        }
+
+        .eachCardRightPart {
+            margin-left: 0%;
+        }
+
+        .Interest {
+            color: rgb(255, 72, 0);
+        }
+
+        .InterestPart {
+            margin: 2% 5% 0% -21%;
+        }
+
+            .InterestPart p {
+                font-size: 14px;
+            }
+
+        .each-Team:hover {
+            transform: scale(1.02);
+            transition: transform 0.2s ease-in;
+        }
+
+        .eachDetails {
+            height: 70px;
+            width: 33%;
+            margin: -3% 7% 0% -33%;
+            text-align: center;
+            background-color: #25282b;
+            color: thistle;
+            border-radius: 5px;
+            padding-top: 3%;
+        }
+
+            .eachDetails p {
+                font-size: 17px;
+                margin-top: -2%;
+            }
+        /****************/
+        /* Team Ends*/
+        /******************/
+
+        hr {
+            margin-top: 5%;
+            margin-bottom: 3%;
+        }
+
+        /****************
+        quotes Section STarts
+        ******************/
+
+        .quotesPartsStarts {
+            background-color: rgba(22, 24, 22, 0.925);
+            padding-bottom: 8%;
+            padding-top: 8%;
+            width: 1200px;
+        }
+
+        .eachquotesSection {
+            width: 80%;
+            margin-left: 11%;
+        }
+
+        .quotesRight {
+        }
+
+            .quotesRight h3 {
+                color: rgb(255, 0, 55);
+                margin-top: 9%;
+                margin-left: 10%;
+            }
+
+            .quotesRight p {
+                color: rgb(216, 214, 180);
+            }
+
+        .quotesInfo {
+            width: 60%;
+            margin-left: 10%;
+        }
+
+        .quotesRight a {
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+
+        .quotesLeft {
+            width: 100%;
+            margin: 20px;
+            height: 300px;
+            box-shadow: 0px 0px 20px rgb(70, 65, 65);
+            overflow: hidden;
+            position: relative;
+            float: left;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+            .quotesLeft img {
+                width: 100%;
+                height: 100%;
+            }
+
+        .quotesLeftImg {
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -o-transition: all .5s;
+            transition: all .5s;
+        }
+
+        .eachquotesSection:hover .quotesLeftImg, .eachquotesSection:focus .quotesLeftImg {
+            -ms-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
+            .eachquotesSection:hover .quotesLeftImg:before, .eachquotesSection:focus .quotesLeftImg:before {
+                display: block;
+            }
+
+        .quotesLeftImg:before {
+            content: "";
+            display: none;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(52,73,94,0.75);
+        }
+
+
+
+        /****************
+        quotes Section Ends
+        ******************/
+        .Allteams {
+            background-color: rgba(22, 24, 22, 0.925);
+            padding-bottom: 7%;
+        }
+
+            .Allteams h1 {
+                color: wheat;
+                margin-top: -0%;
+                padding-top: 5%;
+                padding-bottom: 2%;
+            }
+
+            .Allteams .recentTeams {
+                display: grid;
+                grid-template-columns: repeat(3,1fr);
+                margin-left: -3%;
+            }
+
+        /******************
+        *******************
+        **Add Starts ******
+        ******************/
+        .rightPart {
+            background-color: rgb(22, 21, 21);
+            width: 374px;
+        }
+
+        .addPart {
+            width: 70%;
+            margin: 20px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            float: left;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 17%;
+            border-radius: 7px;
+        }
+
+        .addPartImg {
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -o-transition: all .5s;
+            transition: all .5s;
+        }
+
+            .addPartImg a {
+                display: none;
+                font-size: 35px;
+                color: #ffffff !important;
+                font-family: sans-serif;
+                text-align: center;
+                margin: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                height: 50px;
+                cursor: pointer;
+                /*text-decoration: none;*/
+            }
+
+        .addPart:hover .addPartImg:before, .addPart:focus .addPartImg:before {
+            display: block;
+        }
+
+        .addPart:hover .addPartImg a, .addPart:focus .addPartImg a {
+            display: block;
+        }
+
+        .addPartImg:before {
+            content: "";
+            display: none;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(52,73,94,0.75);
+        }
+
+
+
+        /* Several different images */
+        .add-one {
+            background-image: url('/Content/Teams/addImg1.jpg');
+        }
+
+        .add-two {
+            background-image: url('/Content/Teams/addImg2.jpg');
+        }
+
+        .add-three {
+            background-image: url('/Content/Teams/addImg2.jpg');
+        }
+
+
+        /******************
+          *******************
+          **Add Ends ******
+          ******************/
+
+
+
+
+
+        /******************
+          *******************
+          Team Advice Starts******
+        ******************/
+
+
+
+
+
+        .teamAdviceSection {
+            padding: 10% 2% 5% 2%;
+            background-color: rgba(162, 173, 150, 0.308);
+        }
+
+        .media {
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            position: absolute;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .left .media {
+            background-image: url('/Content/Teams/teamPic1.jpg');
+        }
+
+        .right .media {
+            background-image: url('/Content/Teams/teamPic2.jpg');
+        }
+
+        figure {
+            height: 370px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            figure a {
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 3;
+            }
+
+            figure:hover .media {
+                transform: scale(1.25);
+            }
+
+        figcaption {
+            color: #252830;
+            height: calc(100% - 30px);
+            margin: 15px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 250px;
+        }
+
+        .body {
+            background-color: white;
+            bottom: 0;
+            padding: 15px;
+            position: absolute;
+            width: 100%;
+        }
+
+        svg {
+            height: inherit;
+            width: 100%;
+        }
+
+            svg text {
+                text-anchor: middle;
+            }
+
+            svg #alpha {
+                fill: white;
+            }
+
+            svg .title {
+                font-size: 28px;
+                font-family: "Montserrat";
+                letter-spacing: 5px;
+            }
+
+        .left svg #base {
+            fill: white;
+            -webkit-mask: url(#leftMask);
+            mask: url(#leftMask);
+        }
+
+        .right svg #base {
+            fill: white;
+            -webkit-mask: url(#rightMask);
+            mask: url(#rightMask);
+        }
+
+
+
+
+
+
+        /******************
+          *******************
+          Team Advice Ends******
+        ******************/
+
+
+
+    </style>
+
+
+</head>
+<section class="">
+    <section>
+        <section class="headerImg">
+            <img src="~/Content/Teams/headerTeam.jpg" alt="">
+        </section>
+
+
+
+        <section class="leftSectionPart">
+            <section class="row">
+
+                <!-- Recent Teams starts -->
+                <section class="col-9 ">
+                    <h1 class="recentTeamheading">Recent Created Teams</h1>
+                    <section class="recentTeams ">
+
+                        @foreach (var team in (List<Team>)ViewData["teams"])
+                        {
+                            <section class="each-TeamSection">
+                                <article class="each-Team">
+                                    <section>
+                                        <article class="each-card-Design">
+                                            <section class="row row-cols-1 row-cols-md-2">
+
+                                                <!-- Image Part -->
+                                                <article class="col ">
+                                                    <div class="imgPart">
+                                                        <img src="@(team.dp)">
+                                                    </div>
+                                                </article>
+
+                                                <!-- Headings Part -->
+                                                <article class="col ">
+                                                    <div class="headingsPart">
+                                                        <h3 class="headings">@(team.teamName)</h3>
+                                                        <p>@(supervisorMap[team.supervisorID].name)</p>
+                                                    </div>
+                                                </article>
+
+
+                                                <!-- Researchers Part -->
+                                                <article class="col">
+                                                    <div class="eachCardLeftPart">
+                                                        <h4>
+                                                            <span class="badge bg-success">Researchers</span>
+                                                        </h4>
+                                                        @foreach (var studentID in team.studentIDs)
+                                                        {
+                                                            <h6> @(studentMap[studentID].name) </h6>
+                                                        }
+                                                    </div>
+                                                </article>
+
+                                                <!-- Details Part -->
+                                                <article class="col ">
+                                                    <article class="TeamDetailsList d-flex justify-content-around">
+
+                                                        <section class="eachDetails">
+                                                            <h5>1</h5>
+                                                            <p>Papers</p>
+                                                        </section>
+                                                        <section class="eachDetails ">
+                                                            <h5>@(team.studentIDs.Length)</h5>
+                                                            <p>Members</p>
+                                                        </section>
+                                                        <section class="eachDetails">
+                                                            <h5>1</h5>
+                                                            <p>Publish</p>
+                                                        </section>
+                                                    </article>
+                                                    <article class="InterestPart">
+                                                        <h4 class="Interest">Interest</h4>
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+                                                            veritatis,
+                                                            consequatur, porro rerum dolorem quas
+                                                        </p>
+                                                    </article>
+                                                </article>
+
+                                            </section>
+                                        </article>
+                                    </section>
+                                </article>
+                            </section>
+                        }
+                    </section>
+
+                    <hr>
+
+
+                    <!-- quotes Section STarts -->
+                    <section class="quotesPartsStarts">
+
+                        <section>
+                            <section class="eachquotesSection">
+                                <section class="row">
+
+                                    <article class="col-5">
+                                        <section class="quotesLeft">
+                                            <div class="quotesLeftImg">
+                                                <img src="~/Content/Teams/teamQuotes1.jpg">
+                                            </div>
+                                        </section>
+                                    </article>
+                                    <article class="col-7">
+                                        <section class="quotesRight" style=" margin-left: 0%;">
+                                            <h3>
+                                                Will you get a job after Covid has wrecked Higher Education?
+                                            </h3>
+                                            <section class="quotesInfo">
+                                                <p style="color: orange;">August 25, 2021</p>
+                                                <p class="quotesInfoDetlais">
+                                                    I started the Thesis Whisperer to help PhD
+                                                    students finish. In the
+                                                    last five years I’ve extended that mission to helping people get
+                                                    jobs after they graduate.
+                                                </p>
+                                                <a href="https://thesiswhisperer.com/2021/08/25/will-you-get-a-job-after-covid-has-wrecked-higher-education/"
+                                                   target="_blank">Visit For more</a>
+                                            </section>
+
+                                        </section>
+
+                                    </article>
+
+
+                                </section>
+                            </section>
+
+                            <section class="eachquotesSection">
+                                <hr style="color:red;">
+                                <section class="row">
+
+                                    <article class="col-5">
+                                        <section class="quotesLeft">
+                                            <div class="quotesLeftImg">
+                                                <img src="~/Content/Teams/teamQuotes2.jpg">
+                                            </div>
+                                        </section>
+                                    </article>
+                                    <article class="col-7">
+                                        <section class="quotesRight" style=" margin-left: 0%;">
+                                            <h3>
+                                                The art of the ‘cold call’ email
+                                            </h3>
+                                            <section class="quotesInfo">
+                                                <p style="color: orange;">July 7, 2021</p>
+                                                <p class="quotesInfoDetlais">
+                                                    We humans are a curious lot. We are highly
+                                                    social creatures but idiosyncratic. There is a lot of love, but also
+                                                    a lot of jostling.
+                                                </p>
+                                                <a href="https://thesiswhisperer.com/2021/07/07/cold-call-emailing/"
+                                                   target="_blank">Visit For more</a>
+                                            </section>
+
+                                        </section>
+
+                                    </article>
+
+
+                                </section>
+                            </section>
+
+                            <section class="eachquotesSection">
+                                <hr style="color:red;">
+                                <section class="row">
+
+                                    <article class="col-5">
+                                        <section class="quotesLeft">
+                                            <div class="quotesLeftImg">
+                                                <img src="~/Content/Teams/teamQuotes3.jpg">
+                                            </div>
+                                        </section>
+                                    </article>
+                                    <article class="col-7">
+                                        <section class="quotesRight" style=" margin-left: 0%;">
+                                            <h3>
+                                                How to make your dissertation ‘speak’ to experts
+                                            </h3>
+                                            <section class="quotesInfo">
+                                                <p style="color: orange;">May 5, 2021</p>
+                                                <p class="quotesInfoDetlais">
+                                                    Most people come into a PhD program with
+                                                    well developed writing skills but a dissertation – or as it is
+                                                    called in Australia, a Thesis, is a very particular kind of writing
+                                                    challenge.
+                                                </p>
+                                                <a href="https://thesiswhisperer.com/2021/05/05/how-to-make-your-dissertation-speak-to-experts/"
+                                                   target="_blank">Visit For more</a>
+                                            </section>
+
+                                        </section>
+
+                                    </article>
+
+
+                                </section>
+                            </section>
+                        </section>
+
+                    </section>
+                    <!-- quotes Section Ends -->
+                </section>
+                <!-- Recent Teams ends -->
+                <!-- add  starts -->
+                <section class="col-3 rightPart">
+                    <section class="">
+                        <!-- add Part Starts  -->
+                        <section class="addPart" onclick="">
+                            <div class="addPartImg add-one">
+                                <a href="https://thesiswhisperer.com/2021/05/05/how-to-make-your-dissertation-speak-to-experts/"
+                                   target="=_blank">Add name</a>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="">
+                        <!-- add Part Starts  -->
+                        <section class="addPart" onclick="">
+                            <div class="addPartImg add-two">
+                                <a href="https://thesiswhisperer.com/2021/05/05/how-to-make-your-dissertation-speak-to-experts/"
+                                   target="=_blank">Add Name</a>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="">
+                        <!-- add Part Starts  -->
+                        <section class="addPart" onclick="">
+                            <div class="addPartImg add-three">
+                                <a href="https://thesiswhisperer.com/2021/05/05/how-to-make-your-dissertation-speak-to-experts/ "
+                                   target="=_blank">Add Name</a>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+                <!-- add  ends -->
+            </section>
+
+            <!--Extra Image Part Starts-->
+            <section class="" style="height: 500px;">
+                <img src="~/Content/Teams/robotImg.jpg" style="height: 100%; width:100%">
+
+            </section>
+
+            <!--Extra Image Part Ends-->
+            <!-- Team Advice Starts -->
+            <section class="teamAdviceSection">
+                <div class="">
+                    <section class="row">
+                        <div class="col-6 left">
+                            <figure>
+                                <div class="media">
+                                </div>
+                                <figcaption>
+                                    <svg viewBox="0 0 200 200" version="1.1" preserveAspectRatio="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <mask id="leftMask" x="0" y="0" width="100%" height="100%">
+                                                <rect id="alpha" x="0" y="0" width="100%" height="100%"></rect>
+                                                <text class="title" dx="50%" dy="2.5em">STRONG </text>
+                                                <text class="title"
+                                                      dx="50%" dy="3.5em">SENSE </text>
+                                            </mask>
+                                        </defs>
+                                        <rect id="base" x="0" y="0" width="100%" height="100%"></rect>
+                                    </svg>
+                                    <div class="body">
+                                        <p>
+                                            Team members have a strong sense of belonging to the group. They experience a
+                                            deep commitment to the group’s decisions and actions.
+                                        </p>
+                                    </div>
+                                </figcaption><a href="#"></a>
+                            </figure>
+                        </div>
+
+
+                        <div class="col-6 right">
+
+                            <figure>
+                                <div class="media"></div>
+                                <figcaption>
+                                    <svg viewBox="0 0 200 200" version="1.1" preserveAspectRatio="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <mask id="rightMask" x="0" y="0" width="100%" height="100%">
+                                                <rect id="alpha" x="0" y="0" width="100%" height="100%"></rect>
+                                                <text class="title" dx="50%" dy="2.5em">QUALITY</text>
+                                                <text class="title"
+                                                      dx="50%" dy="3.5em">DECISIONS </text>
+                                            </mask>
+                                        </defs>
+                                        <rect id="base" x="0" y="0" width="100%" height="100%"></rect>
+                                    </svg>
+                                    <div class="body">
+                                        <p>
+                                            Members of the team make high-quality decisions together and commitment of
+                                            the group to carry out the decisions made.
+                                        </p>
+                                    </div>
+                                </figcaption><a href="#"></a>
+                            </figure>
+                        </div>
+                    </section>
+
+                </div>
+
+            </section>
+
+            <!-- Team Advice Ends -->
+            <!--
+            All Team Starts -->
+            <section class="Allteams">
+                <h1 class="recentTeamheading">All Teams</h1>
+                <section class="recentTeams">
+                    @foreach (var team in (List<Team>)ViewData["teams"])
+                    {
+                        <section class="each-TeamSection">
+                            <article class="each-Team">
+                                <section>
+                                    <article class="each-card-Design">
+                                        <section class="row row-cols-1 row-cols-md-2">
+
+                                            <!-- Image Part -->
+                                            <article class="col ">
+                                                <div class="imgPart">
+                                                    <img src="@(team.dp)">
+                                                </div>
+                                            </article>
+
+                                            <!-- Headings Part -->
+                                            <article class="col ">
+                                                <div class="headingsPart">
+                                                    <h3 class="headings">@(team.teamName)</h3>
+                                                    <p>@(supervisorMap[team.supervisorID].name)</p>
+                                                </div>
+                                            </article>
+
+                                            <!-- Researchers Part -->
+                                            <article class="col">
+                                                <div class="eachCardLeftPart">
+                                                    <h4>
+                                                        <span class="badge bg-success">Researchers</span>
+                                                    </h4>
+                                                    @foreach (var studentID in team.studentIDs)
+                                                    {
+                                                        <h6> @(studentMap[studentID].name) </h6>
+                                                    }
+                                                </div>
+                                            </article>
+
+                                            <!-- Details Part -->
+                                            <article class="col ">
+                                                <article class="TeamDetailsList d-flex justify-content-around">
+
+                                                    <section class="eachDetails">
+                                                        <h5>1</h5>
+                                                        <p>Papers</p>
+                                                    </section>
+                                                    <section class="eachDetails ">
+                                                        <h5>@(team.studentIDs.Length)</h5>
+                                                        <p>Members</p>
+                                                    </section>
+                                                    <section class="eachDetails">
+                                                        <h5>1</h5>
+                                                        <p>Publish</p>
+                                                    </section>
+                                                </article>
+                                                <article class="InterestPart">
+                                                    <h4 class="Interest">Interest</h4>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+                                                        veritatis,
+                                                        consequatur, porro rerum dolorem quas
+                                                    </p>
+                                                </article>
+                                            </article>
+
+                                        </section>
+                                    </article>
+                                </section>
+                            </article>
+                        </section>
+                    }
+
+                </section>
+            </section>
+
+            <!--
+            All Team ENds -->
+        </section>
+    </section>
+</section>
+<script src="~/bundles/jquery-3.3.1.min.js"></script>
+<script src="~/bundles/popper.min.js"></script>
+<script src="~/bundles/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+

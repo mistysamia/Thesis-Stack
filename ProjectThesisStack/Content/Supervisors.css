@@ -1,0 +1,371 @@
+﻿body {
+    margin: 0;
+    background-color: #ddd0d0;
+}
+
+.headerImg {
+    width: 100%;
+    height: 600px;
+}
+
+    .headerImg img {
+        width: 100%;
+        height: 85%;
+        position: absolute;
+        z-index: -1;
+    }
+
+.supervisorOption {
+    width: 47%;
+    height: 250px;
+    margin: -12% 0% 0% 26%;
+    background-color: rgb(211, 211, 177);
+    box-shadow: 0px 0px 40px #b37542;
+    border-radius: 5px;
+}
+
+.headerQuotes {
+    margin: 0% 0% 0% 13%;
+    border: 1px solid rgb(211, 211, 177);
+}
+
+.chooseSupervisor {
+    border: 1px solid rgb(235, 0, 0);
+    width: 27%;
+    margin-left: 36%;
+    height: 50px;
+    margin-top: -2%;
+    background-color: #fd0037;
+    border-radius: 20px;
+}
+
+    .chooseSupervisor div {
+        width: 80%;
+        height: 33px;
+        border-radius: 10px;
+        transition: transform 0.2s ease-in;
+        color: wheat;
+    }
+
+        .chooseSupervisor div:hover {
+            background-color: rgb(211, 211, 177);
+            transform: scale(1.03);
+            transition: transform 0.2s ease-in;
+            color: rebeccapurple;
+            cursor: pointer;
+        }
+
+.filterSupervisorCard, .SupervisorCard {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+
+.card {
+    background-color: rgb(221, 221, 217);
+    border-radius: 10px;
+    height: 360px;
+}
+
+.filterSupervisorName, .SupervisorName {
+    font-size: 24px;
+    color: rgb(139, 55, 16);
+    transition: font-size .4s ease-in;
+}
+
+.card:hover .filterSupervisorName {
+    font-size: 18px;
+    transition: font-size 0.4s ease-in 0.4s;
+}
+
+.filterSupervisorInfo, .SupervisorInfo {
+    margin-top: 0%;
+    margin-bottom: 3%;
+    transition: margin-top .4s ease-in;
+}
+
+.filterSupervisor {
+    box-shadow: 0px 0px 40px #615f5d;
+}
+
+.filterSuperDp, .SuperDp {
+    border: 3px solid rgb(124, 121, 121);
+    height: 110px;
+    width: 40%;
+    border-radius: 50%;
+    margin-top: 10%;
+    transition: width .4s ease-in,height .4s ease-in;
+}
+
+.card:hover .filterSuperDp {
+    width: 70%;
+    height: 195px;
+    transition: width 0.4s ease-in 0.4s, height 0.4s ease-in 0.4s;
+}
+
+.supervisorsDetails, .ViewsupervisorsDetails {
+    height: 70px;
+    width: 100%;
+    background-color: rgb(26, 25, 25);
+    border-radius: 5px;
+    transition: transform .4s ease-in 0.4s;
+}
+
+.card:hover .supervisorsDetails {
+    transform: scale(0);
+    transition: transform 0.4s ease-in;
+}
+
+.card:hover .filterSupervisorInfo {
+    margin-top: 10%;
+    transform: translate(1);
+    transition: margin-top 0.4s ease-in 0.4s;
+}
+
+
+.supervisorsDetails h4, .ViewsupervisorsDetails h4 {
+    color: tomato;
+    margin-top: 3%;
+}
+
+.supervisorsDetails p, .ViewsupervisorsDetails p {
+    color: white;
+}
+
+
+
+.Quotes {
+    width: 100%;
+    height: 420px;
+    margin-top: 10%;
+    background-color: #1d1a1a;
+}
+
+    .Quotes img {
+        width: 100%;
+        height: 100%;
+    }
+
+.QuotesSectionTitle h1 {
+    font-size: 60px;
+    color: rgb(163, 154, 152);
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+
+
+
+
+.facultySpechesHeadings {
+    padding: 7% 0% 3% 0%;
+    color: rgb(104, 11, 5);
+}
+
+.Slider {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 50vh;
+    border-radius: 9px;
+}
+
+.PerQuotes {
+    width: 100%;
+    height: 50vh;
+}
+
+    .PerQuotes img {
+        width: 100%;
+        height: 100%;
+    }
+
+.sidebar {
+    height: 100%;
+    width: 35%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+    .sidebar > div {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+    }
+
+    .sidebar h1 {
+        font-size: 40px;
+        margin-bottom: 10px;
+        margin-top: -30px;
+    }
+
+.main-slide {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 35%;
+    width: 65%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.QuotesSupervisorDP {
+    height: 65%;
+    width: 50%;
+    margin-bottom: 10%;
+}
+
+    .QuotesSupervisorDP img {
+        border-radius: 50%;
+        height: 100%;
+        width: 100%;
+    }
+
+.main-slide > div {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+}
+
+button {
+    background-color: #fff;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 15px;
+}
+
+    button:hover {
+        color: #222;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+.container .controls button {
+    position: absolute;
+    left: 35%;
+    top: 50%;
+    z-index: 100;
+}
+
+.container .controls .down-button {
+    transform: translateX(-100%);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.container .controls .up-button {
+    transform: translateY(-100%);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.quotes1 {
+    background: linear-gradient(229.99deg, #e7026d -26%, #741664 145%);
+}
+
+.quotes2 {
+    background: linear-gradient(215.32deg, #ee9c3d -1%, #8e5c22 124%);
+}
+
+.quotes3 {
+    background: linear-gradient(221.87deg, #6bb44a 1%, #337416 128%);
+}
+
+.quotes4 {
+    background: linear-gradient(220.16deg, #15b3cf -8%, #0b4b64 138%);
+}
+
+.PerQuotes p {
+    position: absolute;
+    z-index: 111;
+    text-align: center;
+    margin: -27% 7% 0% 7%;
+    font-size: x-large;
+    color: rgb(0, 0, 0);
+}
+
+
+/* All Supervisor  */
+
+.supervisorField {
+    background-color: rgb(0, 0, 0);
+    margin-top: 6%;
+    padding-top: 7%;
+}
+
+    .supervisorField h1 {
+        color: rgb(200, 201, 151);
+        text-align: center;
+    }
+
+.ViewSupervisor {
+    box-shadow: 0px 0px 15px rgb(112, 107, 107);
+}
+
+.card:hover .SuperDp {
+    width: 50%;
+    height: 135px;
+    transition: width 0.4s ease-in 0.2s, height 0.4s ease-in 0.2s;
+}
+
+.card:hover .SupervisorName {
+    font-size: 33px;
+    transition: font-size 0.2s ease-in 0.2s;
+}
+
+.detailsButtonPart {
+    height: 40px;
+    width: 289px;
+    border: none;
+    border-radius: 0px 0px 10px 10px;
+    background-color: rgba(160, 31, 31, 0);
+    position: absolute;
+    margin: 0% 0% 0% -6%;
+    z-index: 1;
+    display: block;
+    color: rgba(160, 31, 31, 0);
+    transform: scale(0);
+    transition: transform 0.5s ease-out,background-color 0.5s,color 0.5s ease-in;
+    transition-delay: 0.1s;
+}
+
+.card:hover .detailsButtonPart {
+    display: block;
+    transform: translateY(-45px);
+    background-color: rgb(160, 31, 31);
+    color: honeydew;
+    transition: transform 1s,background-color 1s,color 1s ease-in 2s;
+    transition-delay: 0.3s;
+}
+
+
+@media screen and (max-width: 1372px) and (min-width: 1000px) {
+    .filterSupervisorCard, .SupervisorCard {
+        grid-template-columns: repeat(3,1fr);
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width: 999px) and (min-width: 600px) {
+    .filterSupervisorCard, .SupervisorCard {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .filterSupervisorCard, .SupervisorCard {
+        grid-template-columns: repeat(1,1fr);
+        margin-left: 10%;
+    }
+}
