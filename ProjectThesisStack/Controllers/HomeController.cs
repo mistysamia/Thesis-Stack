@@ -331,6 +331,19 @@ namespace ProjectThesisStack.Controllers
                 var coll = db.GetCollection<Supervisor>("Supervisor");
                 var supervisors = coll.Find(b => true).ToList<Supervisor>();
                 ViewData["supervisors"] = supervisors;
+
+                var supervisorsCSE = coll.Find(b => b.department=="CSE").ToList<Supervisor>();
+                var supervisorsEEE = coll.Find(b => b.department == "EEE").ToList<Supervisor>();
+                var supervisorsCE = coll.Find(b => b.department == "CE").ToList<Supervisor>();
+                var supervisorsME = coll.Find(b => b.department == "ME").ToList<Supervisor>();
+                var supervisorsTE = coll.Find(b => b.department == "TE").ToList<Supervisor>();
+
+                ViewData["supervisorsCSE"] = supervisorsCSE;
+                ViewData["supervisorsEEE"] = supervisorsEEE;
+                ViewData["supervisorsCE"] = supervisorsCE;
+                ViewData["supervisorsME"] = supervisorsME;
+                ViewData["supervisorsTE"] = supervisorsTE;
+                
                 return View();
             }
             else

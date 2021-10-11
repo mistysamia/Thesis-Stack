@@ -1,6 +1,13 @@
 ﻿@using ProjectThesisStack.Models
 @{
     ViewBag.Title = "Supervisors";
+    var allSupervisors = (List<Supervisor>)ViewData["supervisors"];
+    var supervisorsCSE = (List<Supervisor>)ViewData["supervisorsCSE"];
+    var supervisorsEEE = (List<Supervisor>)ViewData["supervisorsEEE"];
+    var supervisorsCE = (List<Supervisor>)ViewData["supervisorsCE"];
+    var supervisorsME = (List<Supervisor>)ViewData["supervisorsME"];
+    var supervisorsTE = (List<Supervisor>)ViewData["supervisorsTE"];
+    List<Supervisor> supervisors;
 
 }
 
@@ -341,6 +348,9 @@
                 text-align: center;
             }
 
+        #EEE, #CE, #TE, #ME {
+            display: none;
+        }
 
         .ViewSupervisor {
             box-shadow: 0px 0px 15px rgb(112, 107, 107);
@@ -411,16 +421,19 @@
         <section class="chooseSupervisor">
             <article class="d-flex justify-content-around pt-2 px-3 fs-5 text-center">
                 <div>
-                    <p>Filter</p>
+                    <p onclick="filterDept('CSE')">CSE</p>
                 </div>
                 <div>
-                    <p>Filter</p>
+                    <p onclick="filterDept('CE')">CE</p>
                 </div>
                 <div>
-                    <p>Filter</p>
+                    <p onclick="filterDept('TE')">TE</p>
                 </div>
                 <div>
-                    <p>Filter</p>
+                    <p onclick="filterDept('ME')">ME</p>
+                </div>
+                <div>
+                    <p onclick="filterDept('EEE')">EEE</p>
                 </div>
             </article>
         </section>
@@ -430,55 +443,270 @@
 
         <section class=" filterSection">
 
-            <!-- Supervisor Filter Starts -->
-            <section class="row filterSupervisorCard">
-                @{
-                    var count = 4;
-                }
-                @foreach (var supervisor in (List<Supervisor>)ViewData["supervisors"])
-                {
-                    count--;
-
-                    if (count == -1)
-                    {
-                        break;
+            <!-- Supervisor Filter Starts CSE -->
+            <section id="CSE">
+                <section class="row filterSupervisorCard ">
+                    @{
+                        var count = 4;
                     }
+                    @foreach (var supervisor in supervisorsCSE)
+                    {
+                        count--;
 
-                    <article>
-                        <section class="card mt-5 filterSupervisor" style="width: 18rem;">
-                            <img src="@(supervisor.dp)" class=" mx-auto d-block card-img-top filterSuperDp" alt="...">
-                            <article class="card-body">
-                                <!-- Supervisor Info Starts-->
-                                <section class="text-center filterSupervisorInfo mb-3">
-                                    <h4 class="filterSupervisorName">@(supervisor.name)</h4>
-                                    <h6 class="filterSupervisorDesignation">@(supervisor.designation)</h6>
-                                    <p class="filterSupervisorDept">@(supervisor.department)|AUST</p>
-                                </section>
-                                <!-- Supervisor Info Ends -->
-                                <!-- Supervisor Details Starts-->
-                                <section class="supervisorsDetails">
-                                    <article class="d-flex justify-content-evenly">
-                                        <section class="text-center eachDetails">
-                                            <h4>@(supervisor.totalSlot)</h4>
-                                            <p>Total</p>
-                                        </section>
-                                        <section class="text-center eachDetails">
-                                            <h4>@(supervisor.totalSlot - supervisor.remainingSlot)</h4>
-                                            <p>Alloc</p>
-                                        </section>
-                                        <section class="text-center eachDetails">
-                                            <h4>@(supervisor.remainingSlot)</h4>
-                                            <p>Rem</p>
-                                        </section>
-                                    </article>
-                                </section>
-                                <!-- Supervisor Details Ends-->
-                            </article>
-                        </section>
-                    </article>
-                }
+                        if (count == -1)
+                        {
+                            break;
+                        }
+
+                        <article>
+                            <section class="card mt-5 filterSupervisor" style="width: 18rem;">
+                                <img src="@(supervisor.dp)" class=" mx-auto d-block card-img-top filterSuperDp" alt="...">
+                                <article class="card-body">
+                                    <!-- Supervisor Info Starts-->
+                                    <section class="text-center filterSupervisorInfo mb-3">
+                                        <h4 class="filterSupervisorName">@(supervisor.name)</h4>
+                                        <h6 class="filterSupervisorDesignation">@(supervisor.designation)</h6>
+                                        <p class="filterSupervisorDept">@(supervisor.department)|AUST</p>
+                                    </section>
+                                    <!-- Supervisor Info Ends -->
+                                    <!-- Supervisor Details Starts-->
+                                    <section class="supervisorsDetails">
+                                        <article class="d-flex justify-content-evenly">
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot)</h4>
+                                                <p>Total</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot - supervisor.remainingSlot)</h4>
+                                                <p>Alloc</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.remainingSlot)</h4>
+                                                <p>Rem</p>
+                                            </section>
+                                        </article>
+                                    </section>
+                                    <!-- Supervisor Details Ends-->
+                                </article>
+                            </section>
+                        </article>
+                    }
+                </section>
             </section>
-            <!-- Supervisor Filter Ends -->
+
+            <!-- Supervisor Filter CSE Ends -->
+            <!-- Supervisor Filter Starts EEE -->
+            <section id="EEE">
+                <section class="row filterSupervisorCard ">
+                    @{
+                        count = 4;
+                    }
+                    @foreach (var supervisor in supervisorsEEE)
+                    {
+                        count--;
+
+                        if (count == -1)
+                        {
+                            break;
+                        }
+
+                        <article>
+                            <section class="card mt-5 filterSupervisor" style="width: 18rem;">
+                                <img src="@(supervisor.dp)" class=" mx-auto d-block card-img-top filterSuperDp" alt="...">
+                                <article class="card-body">
+                                    <!-- Supervisor Info Starts-->
+                                    <section class="text-center filterSupervisorInfo mb-3">
+                                        <h4 class="filterSupervisorName">@(supervisor.name)</h4>
+                                        <h6 class="filterSupervisorDesignation">@(supervisor.designation)</h6>
+                                        <p class="filterSupervisorDept">@(supervisor.department)|AUST</p>
+                                    </section>
+                                    <!-- Supervisor Info Ends -->
+                                    <!-- Supervisor Details Starts-->
+                                    <section class="supervisorsDetails">
+                                        <article class="d-flex justify-content-evenly">
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot)</h4>
+                                                <p>Total</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot - supervisor.remainingSlot)</h4>
+                                                <p>Alloc</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.remainingSlot)</h4>
+                                                <p>Rem</p>
+                                            </section>
+                                        </article>
+                                    </section>
+                                    <!-- Supervisor Details Ends-->
+                                </article>
+                            </section>
+                        </article>
+                    }
+                </section>
+
+            </section>
+
+            <!-- Supervisor Filter EEE Ends -->
+            <!-- Supervisor Filter Starts TE -->
+
+            <section id="TE">
+                <section class="row filterSupervisorCard ">
+                    @{
+                        count = 4;
+                    }
+                    @foreach (var supervisor in supervisorsTE)
+                    {
+                        count--;
+
+                        if (count == -1)
+                        {
+                            break;
+                        }
+
+                        <article>
+                            <section class="card mt-5 filterSupervisor" style="width: 18rem;">
+                                <img src="@(supervisor.dp)" class=" mx-auto d-block card-img-top filterSuperDp" alt="...">
+                                <article class="card-body">
+                                    <!-- Supervisor Info Starts-->
+                                    <section class="text-center filterSupervisorInfo mb-3">
+                                        <h4 class="filterSupervisorName">@(supervisor.name)</h4>
+                                        <h6 class="filterSupervisorDesignation">@(supervisor.designation)</h6>
+                                        <p class="filterSupervisorDept">@(supervisor.department)|AUST</p>
+                                    </section>
+                                    <!-- Supervisor Info Ends -->
+                                    <!-- Supervisor Details Starts-->
+                                    <section class="supervisorsDetails">
+                                        <article class="d-flex justify-content-evenly">
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot)</h4>
+                                                <p>Total</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot - supervisor.remainingSlot)</h4>
+                                                <p>Alloc</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.remainingSlot)</h4>
+                                                <p>Rem</p>
+                                            </section>
+                                        </article>
+                                    </section>
+                                    <!-- Supervisor Details Ends-->
+                                </article>
+                            </section>
+                        </article>
+                    }
+                </section>
+            </section>
+          
+            <!-- Supervisor Filter TE Ends -->
+            <!-- Supervisor Filter Starts ME -->
+
+            <section id="ME">
+                <section class="row filterSupervisorCard ">
+                    @{
+                        count = 4;
+                    }
+                    @foreach (var supervisor in supervisorsME)
+                    {
+                        count--;
+
+                        if (count == -1)
+                        {
+                            break;
+                        }
+
+                        <article>
+                            <section class="card mt-5 filterSupervisor" style="width: 18rem;">
+                                <img src="@(supervisor.dp)" class=" mx-auto d-block card-img-top filterSuperDp" alt="...">
+                                <article class="card-body">
+                                    <!-- Supervisor Info Starts-->
+                                    <section class="text-center filterSupervisorInfo mb-3">
+                                        <h4 class="filterSupervisorName">@(supervisor.name)</h4>
+                                        <h6 class="filterSupervisorDesignation">@(supervisor.designation)</h6>
+                                        <p class="filterSupervisorDept">@(supervisor.department)|AUST</p>
+                                    </section>
+                                    <!-- Supervisor Info Ends -->
+                                    <!-- Supervisor Details Starts-->
+                                    <section class="supervisorsDetails">
+                                        <article class="d-flex justify-content-evenly">
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot)</h4>
+                                                <p>Total</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot - supervisor.remainingSlot)</h4>
+                                                <p>Alloc</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.remainingSlot)</h4>
+                                                <p>Rem</p>
+                                            </section>
+                                        </article>
+                                    </section>
+                                    <!-- Supervisor Details Ends-->
+                                </article>
+                            </section>
+                        </article>
+                    }
+                </section>
+            </section>
+            
+            <!-- Supervisor Filter ME Ends -->
+            <!-- Supervisor Filter Starts CE -->
+
+            <section id="CE">
+                <section class="row filterSupervisorCard ">
+                    @{
+                        count = 4;
+                    }
+                    @foreach (var supervisor in supervisorsCE)
+                    {
+                        count--;
+
+                        if (count == -1)
+                        {
+                            break;
+                        }
+
+                        <article>
+                            <section class="card mt-5 filterSupervisor" style="width: 18rem;">
+                                <img src="@(supervisor.dp)" class=" mx-auto d-block card-img-top filterSuperDp" alt="...">
+                                <article class="card-body">
+                                    <!-- Supervisor Info Starts-->
+                                    <section class="text-center filterSupervisorInfo mb-3">
+                                        <h4 class="filterSupervisorName">@(supervisor.name)</h4>
+                                        <h6 class="filterSupervisorDesignation">@(supervisor.designation)</h6>
+                                        <p class="filterSupervisorDept">@(supervisor.department)|AUST</p>
+                                    </section>
+                                    <!-- Supervisor Info Ends -->
+                                    <!-- Supervisor Details Starts-->
+                                    <section class="supervisorsDetails">
+                                        <article class="d-flex justify-content-evenly">
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot)</h4>
+                                                <p>Total</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.totalSlot - supervisor.remainingSlot)</h4>
+                                                <p>Alloc</p>
+                                            </section>
+                                            <section class="text-center eachDetails">
+                                                <h4>@(supervisor.remainingSlot)</h4>
+                                                <p>Rem</p>
+                                            </section>
+                                        </article>
+                                    </section>
+                                    <!-- Supervisor Details Ends-->
+                                </article>
+                            </section>
+                        </article>
+                    }
+                </section>
+            </section>
+           
+            <!-- Supervisor Filter CE Ends -->
         </section>
 
 
@@ -507,30 +735,32 @@
                 <article class="sidebar">
                     <div class="quotes1">
                         <div class="QuotesSupervisorDP">
-                            <img src="~/Content/profile.jpg" alt="">
+                            <img src="~/Content/Image/SupervisorSpeech1.jpg" alt="">
                         </div>
-                        <h1>Dave Ramsey</h1>
+                        <h1>Allan Bloom</h1>
                         <p>Popularity: 361K searches/month</p>
                     </div>
                     <div class="quotes2">
                         <div class="QuotesSupervisorDP">
-                            <img src="~/Content/profile.jpg" alt="">
+                            <img src="~/Content/Image/SupervisorSpeech2.jpg" alt="">
                         </div>
-                        <h1>Tony Robbins</h1>
+                        <h1>Don Young</h1>
                         <p>Popularity: 261K searches/month</p>
                     </div>
                     <div class="quotes3">
                         <div class="QuotesSupervisorDP">
-                            <img src="~/Content/profile.jpg" alt="">
+                            <img src="~/Content/Image/SupervisorSpeech3.jpg" alt="">
                         </div>
                         <h1>Nick Vujicic</h1>
                         <p>Popularity: 201K searches/month</p>
                     </div>
                     <div class="quotes4">
                         <div class="QuotesSupervisorDP">
-                            <img src="~/Content/profile.jpg" alt="">
+                            <img src="~/Content/Image/SupervisorSpeech4.jpg" alt="">
                         </div>
-                        <h1>Eckhart Tolle</h1>
+                        <h1>
+                            Bob Ainsworth
+                        </h1>
                         <p>Popularity: 201K searches/month</p>
                     </div>
                 </article>
@@ -539,25 +769,25 @@
                     <div class="PerQuotes">
                         <img src="~/Content/Image/1.jpg" alt="" style="opacity: 0.3;">
                         <p>
-                            David Ramsey is an American financial author, radio host, television personality, and motivational speaker. His show and writings strongly focus on encouraging people to get out of debt.
+                            "I have strengths, and I have weaknesses. I don't pretend to be able to write a great thesis or doctorate - I have no pretensions in that direction."
                         </p>
                     </div>
                     <div class="PerQuotes">
                         <img src="~/Content/Image/2.jpg" alt="" style="opacity: 0.3;">
                         <p>
-                            Tony Robbins is an American motivational speaker, personal finance instructor, and self-help author. He became well known from his infomercials and self-help books: Unlimited Power, Unleash the Power Within and Awaken the Giant Within.
+                            "Experiments were not attempted at that time, we did not believe in the usefulness of the concept anyway, and I finished my thesis in 1962 with a feeling like an artist balancing on a high rope without any interested spectators."
                         </p>
                     </div>
                     <div class="PerQuotes">
                         <img src="~/Content/Image/3.jpg" alt="" style="opacity: 0.3;">
                         <p>
-                            Nick Vujicic is an Australian Christian evangelist and top motivational speaker born with Phocomelia, a rare disorder characterised by the absence of legs and arms.
+                            "I wrote my thesis on the benefits of war and very near got thrown out of college. But I can show you where the greatest advancement of mankind comes under stress and strain, not comfort."
                         </p>
                     </div>
                     <div class="PerQuotes">
                         <img src="~/Content/Image/4.jpg" alt="" style="opacity: 0.3;">
                         <p>
-                            Eckhart Tolle is a German-born resident of Canada, best known as the author of The Power of Now and A New Earth: Awakening to your Life’s Purpose. In 2011, he was listed by Watkins Review as the most spiritually influential person in the world.
+                           " Education in our times must try to find whatever there is in students that might yearn for completion, and to reconstruct the learning that would enable them autonomously to seek that completion."
                         </p>
                     </div>
                 </section>
@@ -695,6 +925,46 @@
                 });
             }
             slider();
+
+            function filterDept(deptName) {
+                if (deptName == 'CSE') {
+                    document.getElementById('CSE').style.display = "block";
+                    document.getElementById('EEE').style.display = "none";
+                    document.getElementById('CE').style.display = "none";
+                    document.getElementById('TE').style.display = "none";
+                    document.getElementById('ME').style.display = "none";
+                }
+                else if (deptName == 'EEE') {
+                    console.log(deptName);
+                    document.getElementById('CSE').style.display = "none";
+                    document.getElementById('EEE').style.display = "block";
+                    document.getElementById('CE').style.display = "none";
+                    document.getElementById('TE').style.display = "none";
+                    document.getElementById('ME').style.display = "none";
+
+                }
+                else if (deptName == 'CE') {
+                    document.getElementById('CSE').style.display = "none";
+                    document.getElementById('EEE').style.display = "none";
+                    document.getElementById('CE').style.display = "block";
+                    document.getElementById('TE').style.display = "none";
+                    document.getElementById('ME').style.display = "none";
+                }
+                else if (deptName == 'TE') {
+                    document.getElementById('CSE').style.display = "none";
+                    document.getElementById('EEE').style.display = "none";
+                    document.getElementById('CE').style.display = "none";
+                    document.getElementById('TE').style.display = "block";
+                    document.getElementById('ME').style.display = "none";
+                }
+                else {
+                    document.getElementById('CSE').style.display = "none";
+                    document.getElementById('EEE').style.display = "none";
+                    document.getElementById('CE').style.display = "none";
+                    document.getElementById('TE').style.display = "none";
+                    document.getElementById('ME').style.display = "block";
+                }
+            }
 
 
 
