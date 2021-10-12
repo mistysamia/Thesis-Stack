@@ -506,5 +506,10 @@ namespace ProjectThesisStack.Controllers
         {
             return View();
         }
+
+        public ActionResult TeamProfile()
+        {
+            return View();
+        }
     }
 }

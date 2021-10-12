@@ -1,0 +1,384 @@
+﻿@using MongoDB.Bson;
+@using MongoDB.Driver;
+@using ProjectThesisStack.Models;
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@{
+    ViewBag.Title = "TeamProfile";
+}
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE =edge">
+    <meta name="viewport" content="width =device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .fullteamBody {
+            background-color: #ddd0d0;
+        }
+
+        #cover img {
+            width: 100%;
+            height: 500px;
+        }
+
+
+        /* Team Profile Card starts  */
+
+        .teamProfile {
+            width: 45%;
+            padding: 2%;
+            background-color: rgb(39, 35, 35);
+            box-shadow: 0px 0px 20px black;
+            border-radius: 12px;
+            margin: -10% 0% 0% 27%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .teamProfileLeft {
+        }
+
+        .teamProfileRight {
+            text-align: center;
+        }
+
+            .teamProfileRight .teamProfileHeadings {
+                font-size: 48px;
+                color: wheat;
+                height: 90px;
+                width: 380px;
+                margin-left: -4.5%;
+            }
+
+        .teamProfileImg {
+            height: 100%;
+            width: 96%;
+        }
+
+            .teamProfileImg img {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                border: 2px solid gray;
+                box-shadow: 0px 0px 20px rgb(20, 20, 20);
+            }
+
+        .teamProfileDetails {
+            padding-left: 10%;
+            margin-top: 6%;
+        }
+
+            .teamProfileDetails .teamDetails {
+                width: 27%;
+                margin: 3% 4% 0% 0%;
+                color: rgb(43, 42, 40);
+                background-color: rgb(32, 201, 201);
+                border-radius: 7px;
+                box-shadow: 0px 0px 20px black;
+            }
+        /* Team Profile Card Ends  */
+
+
+        /* Team Superviosor Card Starts */
+        .eachTeamSup {
+            padding-bottom: 3%;
+        }
+
+            .eachTeamSup .headings {
+                margin: 13% 0% 3% 0%;
+            }
+
+        .TeamSup {
+            background-color: rgb(39, 35, 35);
+            box-shadow: 0px 0px 20px black;
+            width: 75%;
+            margin-left: 13%;
+            border-radius: 12px;
+        }
+
+        .eachTeamSup .TeamSupLeft {
+            padding-bottom: 1%;
+        }
+
+            .eachTeamSup .TeamSupLeft .supImgSection {
+                padding-left: 20%;
+            }
+
+            .eachTeamSup .TeamSupLeft .supImg {
+                height: 70%;
+                width: 70%;
+                padding-top: 20%;
+            }
+
+                .eachTeamSup .TeamSupLeft .supImg img {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                    border: 2px solid gray;
+                    box-shadow: 0px 0px 20px rgb(20, 20, 20);
+                }
+
+        .teamSupDeatils {
+            color: wheat;
+        }
+
+        .eachTeamSup .TeamSupRight {
+            color: rgb(230, 224, 213);
+            padding: 2% 5% 2% 2%;
+        }
+
+        .TeamSupRight h3 {
+            color: rgb(30, 255, 0);
+        }
+
+        .TeamSupRightList {
+            padding: 2% 0% 0% 0%;
+        }
+
+
+        /* Team Superviosor Card Ends */
+
+
+
+
+        /* Team Members Details Starts  */
+        .teamDetails {
+            background-color: rgb(39, 35, 35);
+            padding: 5%;
+            box-shadow: 0px 0px 20px black;
+        }
+
+            .teamDetails h1 {
+                color: palegoldenrod;
+                padding-bottom: 2%;
+            }
+
+        .eachTeamDetails {
+            background-color: rgb(221, 221, 217);
+            border-radius: 10px;
+            margin-bottom: 10%;
+            box-shadow: 0px 0px 40px #744d2e;
+            padding: 1%;
+            transition: transform .2s;
+        }
+
+            .eachTeamDetails:hover {
+                box-shadow: 0px 0px 40px #000000;
+                transform: scale(1.03);
+            }
+
+        .eachTeamDetailsImg {
+            height: 53%;
+            width: 65%;
+            margin: 10% 0% 0% 19%;
+        }
+
+            .eachTeamDetailsImg img {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                border: 2px solid gray;
+            }
+
+        .eachTeamDetailsName {
+            text-align: center;
+            padding: 4% 2% 3% 2%;
+        }
+
+            .eachTeamDetailsName h3 {
+                color: rgb(163, 49, 7);
+            }
+        /* Team Members Details Ends  */
+    </style>
+</head>
+
+
+
+
+
+<section>
+    <section class="fullteamBody">
+        <section>
+            <div id="cover">
+                <img src="~/Content/teamProfileBG.jpg" />
+            </div>
+        </section>
+
+        <!--   Team Profile Card starts -->
+        <section class="eachTeamProfile">
+            <section class="teamProfile">
+                <article class="row">
+                    <section class="col-5 teamProfileLeft">
+                        <div class="teamProfileImg">
+                            <img src="~/Content/profile.jpg">
+                        </div>
+                    </section>
+                    <section class="col-7 teamProfileRight">
+                        <div class="teamProfileHeadings">
+                            <p>Three Dots</p>
+                        </div>
+
+                        <article class="teamProfileDetails">
+                            <section class="row">
+                                <div class="col-4 teamDetails">
+                                    <h2>10</h2>
+                                    <h6>Member</h6>
+                                </div>
+                                <div class="col-4 teamDetails">
+                                    <h2>10</h2>
+                                    <h6>Papers</h6>
+                                </div>
+                                <div class="col-4 teamDetails">
+                                    <h2>10</h2>
+                                    <h6>Publish</h6>
+                                </div>
+                            </section>
+
+                        </article>
+                    </section>
+                </article>
+            </section>
+        </section>
+        <!-- Team Profile Card Ends -->
+        <!-- Team Superviosor Card Starts -->
+        <section class="eachTeamSup">
+            <h1 class="text-center headings">Supvervisor</h1>
+            <section class="TeamSup">
+                <article class="row">
+
+                    <section class="col-4 TeamSupLeft">
+                        <div class="supImgSection">
+                            <div class="supImg">
+                                <img src="~/Content/profile.jpg">
+                            </div>
+                        </div>
+                        <div class="text-center teamSupDeatils">
+                            <h2>Mr. Alfred Joe</h2>
+                            <p>Assistant Professor</p>
+                            <p>CSE|AUST</p>
+                        </div>
+                    </section>
+
+                    <section class="col-8 TeamSupRight">
+                        <article style="margin-bottom: 3%;">
+                            <h3>Educational Background</h3>
+                            <section class="TeamSupRightList">
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                            </section>
+                        </article>
+
+                        <article>
+                            <h3>Area of Interests</h3>
+                            <section class="TeamSupRightList">
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                            </section>
+                        </article>
+                    </section>
+                </article>
+            </section>
+            <hr class="mt-5">
+        </section>
+        <!-- Team Superviosor Card Ends -->
+    </section>
+
+
+    <!-- Team Members Details Starts -->
+    <section class="teamDetails">
+        <h1 class="text-center">Members</h1>
+        <section class="row">
+
+            <section class="col-3">
+                <section class=" eachTeamDetails" style="width: 18rem;">
+                    <section class="eachTeamDetailsImg">
+                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
+                    </section>
+                    <section class="eachTeamDetailsName">
+                        <h3>Samia Rahman Misty</h3>
+                        <h6>Email : 180104101@aust.edu</h6>
+                        <h6>Year: 4th Semester: 1st</h6>
+                        <p>CSE | AUST</p>
+                    </section>
+                </section>
+            </section>
+
+            <section class="col-3">
+                <section class=" eachTeamDetails" style="width: 18rem;">
+                    <section class="eachTeamDetailsImg">
+                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
+                    </section>
+                    <section class="eachTeamDetailsName">
+                        <h3>Samia Rahman Misty</h3>
+                        <h6>Email : 180104101@aust.edu</h6>
+                        <h6>Year: 4th Semester: 1st</h6>
+                        <p>CSE | AUST</p>
+                    </section>
+                </section>
+            </section>
+
+            <section class="col-3">
+                <section class=" eachTeamDetails" style="width: 18rem;">
+                    <section class="eachTeamDetailsImg">
+                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
+                    </section>
+                    <section class="eachTeamDetailsName">
+                        <h3>Samia Rahman Misty</h3>
+                        <h6>Email : 180104101@aust.edu</h6>
+                        <h6>Year: 4th Semester: 1st</h6>
+                        <p>CSE | AUST</p>
+                    </section>
+                </section>
+            </section>
+
+            <section class="col-3">
+                <section class=" eachTeamDetails" style="width: 18rem;">
+                    <section class="eachTeamDetailsImg">
+                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
+                    </section>
+                    <section class="eachTeamDetailsName">
+                        <h3>Samia Rahman Misty</h3>
+                        <h6>Email : 180104101@aust.edu</h6>
+                        <h6>Year: 4th Semester: 1st</h6>
+                        <p>CSE | AUST</p>
+                    </section>
+                </section>
+            </section>
+
+        </section>
+    </section>
+    <!-- Team Members Details Ends -->
+</section>
+
+<script src="~/Scripts/react/react.min.js"></script>
+<script src="~/bundles/jquery-3.3.1.min.js"></script>
+<script src="~/bundles/popper.min.js"></script>
+<script src="~/bundles/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+
+
+
+

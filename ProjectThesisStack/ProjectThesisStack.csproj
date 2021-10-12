@@ -335,6 +335,7 @@
     <Content Include="Views\Home\SupervisorTeam.cshtml" />
     <Content Include="Views\Home\SessionNotFound.cshtml" />
     <Content Include="Views\Home\NewsFeed.cshtml" />
+    <Content Include="Views\Home\TeamProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -88,13 +88,13 @@
                 transition: 0.25s;
                 margin: 20px auto;
             }
-
-            .box P {
-                color: rgb(223, 8, 62);
-                text-transform: uppercase;
-                font-weight: 500;
-                font-size: 40px;
-            }
+    
+        .box P {
+            color: rgb(223, 8, 62);
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 40px;
+        }
 
             .box h1 {
                 color: rgb(29, 226, 11);
@@ -112,7 +112,12 @@
             width: 300px;
             border-color: #2ecc71
         }
-
+        .ErrorSection {
+            color: #d90707;
+            height: 30px;
+        }
+      
+        
         .box .login {
             border: 0;
             background: none;
@@ -127,7 +132,7 @@
             cursor: pointer;
             font-size: 14px;
             margin: -10% 0% 14% 69%;
-            height: 45px;
+           
         }
 
             .box .login:hover {
@@ -254,21 +259,24 @@
                 <h1>Login</h1>
 
                 <hr class="hrStyle">
+                <section class="ErrorSection">
 
+                    @if (ViewBag.LoginFailed != null)
+                    {
+                        <h5>@(ViewBag.LoginFailed)</h5>
+                    }
+                </section>
 
-                @if (ViewBag.LoginFailed != null)
-                {
-                    <h5 style="color:red;">@(ViewBag.LoginFailed)</h5>
-                }
+                <section class="InputSection">
 
-                @using (Html.BeginForm())
-                {
-                    @*<input type="email" name="" placeholder="Email" class="email">*@
-                    @Html.TextBoxFor(m => m.email, new { @class = "email", @id = "email", type = "email", placeholder = "Email (aust domain)", required = "required", pattern = "^[a-zA-Z0-9._-]+@aust.edu$" })
-                    @*<input type="password" name="" placeholder="Password" class="password">*@
-                    @Html.TextBoxFor(m => m.password, new { @class = "password", @id = "password", type = "password", placeholder = "Password", required = "required", pattern = "[0-9a-zA-Z].{7,20}" })
+                    @using (Html.BeginForm())
+                    {
+                        @*<input type="email" name="" placeholder="Email" class="email">*@
+                        @Html.TextBoxFor(m => m.email, new { @class = "email", @id = "email", type = "email", placeholder = "Email (aust domain)", required = "required", pattern = "^[a-zA-Z0-9._-]+@aust.edu$" })
+                        @*<input type="password" name="" placeholder="Password" class="password">*@
+                        @Html.TextBoxFor(m => m.password, new { @class = "password", @id = "password", type = "password", placeholder = "Password", required = "required", pattern = "[0-9a-zA-Z].{7,20}" })
 
-                    @*<ul class="dropdown">
+                        @*<ul class="dropdown">
                 <li>
                     <a href="#">Supervisor</a>
                     <ul>
@@ -280,12 +288,14 @@
             </ul>*@
 
 
-                    @Html.DropDownListFor(m => m.UserType,
-                      new SelectList(Enum.GetValues(typeof(LoginUserType))), new { @class = "dropdown" })
+                        @Html.DropDownListFor(m => m.UserType,
+                          new SelectList(Enum.GetValues(typeof(LoginUserType))), new { @class = "dropdown" })
 
 
-                    <input type="submit" id="LoginBtn" name="signin" value="Login" href="#" class="login">
-                }
+                        <input type="submit" id="LoginBtn" name="signin" value="Login" href="#" class="login">
+                    }
+
+                </section>
             </div>
         </section>
     </section>
