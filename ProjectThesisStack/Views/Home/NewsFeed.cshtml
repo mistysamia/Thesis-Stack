@@ -45,8 +45,8 @@
         }
 
         .ownPostImgSection {
-            height: 45px;
-            width: 50px;
+            height: 65px;
+            width: 70px;
         }
 
             .ownPostImgSection img {
@@ -56,13 +56,17 @@
                 border: 2px solid rgba(26, 25, 25, 0.562);
             }
 
-        .Posting input {
+        .Posting input, .mainPost input {
             /* margin:3% 5% 0% 5%; */
             margin-left: 2%;
             margin-top: 0.5%;
             border-radius: 20px;
             height: 44px;
             width: 100%;
+        }
+
+        .mainPost input {
+            margin-left: 0%;
         }
 
         .ownPostOption {
@@ -191,6 +195,7 @@
             transition: all 450ms ease-out 0s;
             overflow: hidden;
             border-radius: 7px;
+            z-index: 201;
         }
 
             .sponsorCard .sponsorImg {
@@ -770,24 +775,23 @@
 
 
         /******************
-        *******************
-        **Add Starts ******
-        ******************/
+*******************
+**Add Starts ******
+******************/
         .choosePart {
-            position: absolute;
-            z-index: 202;
-            margin-top: 520px;
             height: 440px;
             width: 350px;
             margin-left: 2%;
             border-radius: 20px;
             background-color: rgb(46, 39, 39);
             padding: 2% 0% 0% 1.5%;
+            margin-top: 8%;
         }
 
         .choosePartImg {
-            width: 93%;
+            width: 87%;
             height: 60%;
+            margin: 5% 0% 0% 5.5%;
         }
 
         .choosePart img {
@@ -806,9 +810,9 @@
             transition: transform 0.1s ease-in;
         }
         /******************
-        *******************
-        **Add Ends ******
-        ******************/
+*******************
+**Add Ends ******
+******************/
 
 
         /*************************
@@ -880,115 +884,115 @@
 
                             @if (Session["userType"] == "Supervisor")
                             {
-                            <form method="post">
-                                <!-- Posting Own post Starts-->
-                                <section class="ownPost mb-3">
-                                    <section class="Posting">
-                                        <article class="row">
-                                            <div class="col-1">
-                                                <div class="ownPostImgSection ">
-                                                    <img src="@(((Supervisor)Session["user"]).dp)">
+                                <form method="post">
+                                    <!-- Posting Own post Starts-->
+                                    <section class="ownPost mb-3">
+                                        <section class="Posting">
+                                            <article class="row">
+                                                <div class="col-1">
+                                                    <div class="ownPostImgSection ">
+                                                        <img src="@(((Supervisor)Session["user"]).dp)">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-11">
-                                                <div class="input-group mb-3">
-                                                    @Html.TextBoxFor(m => m.teamName, new
+                                                <div class="col-11">
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(m => m.teamName, new
+                                                        {
+                                                            @class = "form-control",
+                                                            @id = "teamName",
+                                                            type = "text",
+                                                       placeholder = "Team Name",
+                                                            required = "required"
+                                                   })
+
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(m => m.paperTitle, new
+                                                        {
+                                                            @class = "form-control",
+                                                            @id = "email",
+                                                            type = "text",
+                                                  placeholder = "Paper Title",
+                                                            required = "required"
+                                                       })
+
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(m => m.paperBody, new
+                                                       {
+                                                           @class = "form-control",
+                                                           @id = "paperBody",
+                                                           type = "text",
+                                                 placeholder = "Paper Body",
+                                                           required = "required"
+                                                      })
+
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(m => m.tags, new
+                                                      {
+                                                          @class = "form-control",
+                                                          @id = "tags",
+                                                          type = "text",
+                                                placeholder = "Tag",
+                                                          required = "required"
+                                                     })
+
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(m => m.publicationsLink, new
+                                                     {
+                                                         @class = "form-control",
+                                                         @id = "publicationsLink",
+                                                         type = "text",
+                                               placeholder = "Publications Link",
+                                                         required = "required"
+                                                    })
+
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(m => m.status, new
                                                     {
                                                         @class = "form-control",
-                                                        @id = "teamName",
+                                                        @id = "status",
                                                         type = "text",
-                                                   placeholder = "Team Name",
-                                                        required = "required"
-                                               })
-
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    @Html.TextBoxFor(m => m.paperTitle, new
-                                                    {
-                                                        @class = "form-control",
-                                                        @id = "email",
-                                                        type = "text",
-                                              placeholder = "Paper Title",
+                                              placeholder = "Status",
                                                         required = "required"
                                                    })
 
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    @Html.TextBoxFor(m => m.paperBody, new
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        @Html.TextBoxFor(m => m.PDFLink, new
                                                    {
                                                        @class = "form-control",
-                                                       @id = "paperBody",
+                                                       @id = "PDFLink",
                                                        type = "text",
-                                             placeholder = "Paper Body",
+                                             placeholder = "PDF Link",
                                                        required = "required"
                                                   })
 
+                                                    </div>
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    @Html.TextBoxFor(m => m.tags, new
-                                                  {
-                                                      @class = "form-control",
-                                                      @id = "tags",
-                                                      type = "text",
-                                            placeholder = "Tag",
-                                                      required = "required"
-                                                 })
+                                            </article>
+                                            <hr>
+                                            <section class="ownPostOption mb-4 ">
+                                                <section class="d-flex justify-content-end">
 
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    @Html.TextBoxFor(m => m.publicationsLink, new
-                                                 {
-                                                     @class = "form-control",
-                                                     @id = "publicationsLink",
-                                                     type = "text",
-                                           placeholder = "Publications Link",
-                                                     required = "required"
-                                                })
 
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    @Html.TextBoxFor(m => m.status, new
-                                                {
-                                                    @class = "form-control",
-                                                    @id = "status",
-                                                    type = "text",
-                                          placeholder = "Status",
-                                                    required = "required"
-                                               })
+                                                    <div class=" lastButton">
+                                                        <button class="btn px-5"> <i class="fas fa-upload">&nbsp;</i>Submit </button>
+                                                    </div>
+                                                </section>
 
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    @Html.TextBoxFor(m => m.PDFLink, new
-                                               {
-                                                   @class = "form-control",
-                                                   @id = "PDFLink",
-                                                   type = "text",
-                                         placeholder = "PDF Link",
-                                                   required = "required"
-                                              })
-
-                                                </div>
-                                            </div>
-                                        </article>
-                                        <hr>
-                                        <section class="ownPostOption mb-4 ">
-                                            <section class="d-flex justify-content-end">
-                                               
-
-                                                <div class=" lastButton">
-                                                    <button class="btn px-5"> <i class="fas fa-upload">&nbsp;</i>Submit </button>
-                                                </div>
                                             </section>
-
                                         </section>
                                     </section>
-                                </section>
-                                <!-- Posting Own post Starts-->
-                            </form>
-                                
-                                  
-                                
+                                    <!-- Posting Own post Starts-->
+                                </form>
+
+
+
                             }
 
 
@@ -1049,6 +1053,10 @@
                                                         </section>
                                                     </section>
                                                     <!-- Interaction Part Ends -->
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Good Work 💓"
+                                                               aria-label="Username" aria-describedby="basic-addon1">
+                                                    </div>
                                                 </section>
                                             </section>
                                         </section>
@@ -1058,15 +1066,60 @@
                             }
                         </article>
                         <!-- Main Portion Ends -->
+
+
+
                         <!-- Main Portion Right part Starts -->
                         <article class="col-4 rightSection">
+
+                            <h1 class="sponsorHeading">Sponsor</h1>
+
+                            <!-- Add part Starts -->
+                            <section class="my-5">
+                                <section>
+                                    <div class="addImgPart">
+                                        <img src="~/Content/NewsFeed/add2.jpg" alt="">
+                                    </div>
+                                    <div class="blog-card spring-fever">
+                                        <div class="title-content">
+                                            <h3><a href="#"> LINEARY ALGEBRA</a></h3>
+
+                                        </div>
+                                        <div class="card-info mt-4">
+                                            <p>
+                                                This paper provides an elementary treatment of linear algebra that is suitable
+                                                for students in their freshman or sophomore year. Calculus is not a prerequisite.
+                                                The aim in writing this paper is to present the fundamentals.
+                                            </p>
+
+
+                                            <a href="https://cs.siu.edu/files/thesis.pdf" target="_blank">Read <span class="licon icon-arr icon-black"></span></a>
+                                        </div>
+                                        <div class="utility-info">
+                                            <ul class="utility-list">
+                                                <li><span class="licon icon-like"></span><a href="#">2</a></li>
+                                                <li><span class="licon icon-com"></span><a href="#">12</a></li>
+                                                <li><span class="licon icon-dat"></span>03 jun 2017</li>
+                                                <li>
+                                                    <span class="licon icon-tag"></span><a href="#">Python</a>, <a href="#">Deep Learning</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="gradient-overlay"></div>
+                                        <div class="color-overlay"></div>
+                                    </div>
+                                </section>
+                            </section>
+                            <!-- Add Part Ends -->
                             <!-- Sponsor Starts -->
 
                             <section class="sponsorPart">
-                                <h1 class="sponsorHeading">Sponsor</h1>
+
+
+
                                 <section class="my-5">
 
-                                    <div class="sponsorCard">
+                                    <div class="sponsorCard" style=" margin-top: 120%;">
                                         <img class="sponsorImg"
                                              src="~/Content/newsFeedAdd1.jpg" />
                                         <div class="text-overlay">
@@ -1097,49 +1150,11 @@
                                 </section>
                             </section>
                             <!-- Sponsor Ends -->
-                            <!-- Add part Starts -->
-                            <section class="my-5">
-                                <section>
-                                    <div class="addImgPart">
-                                        <img src="~/Content/NewsFeed/add1.jpg" alt="">
-                                    </div>
-                                    <div class="blog-card spring-fever">
-                                        <div class="title-content">
-                                            <h3><a href="#">Thesis Title</a></h3>
-
-                                        </div>
-                                        <div class="card-info mt-4">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                tempor
-                                                incididunt ut labore et dolore magna aliqua. Ut enim ad miniLorem Lorem
-                                                ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                            </p>
-
-
-                                            <a href="#">Read <span class="licon icon-arr icon-black"></span></a>
-                                        </div>
-                                        <div class="utility-info">
-                                            <ul class="utility-list">
-                                                <li><span class="licon icon-like"></span><a href="#">2</a></li>
-                                                <li><span class="licon icon-com"></span><a href="#">12</a></li>
-                                                <li><span class="licon icon-dat"></span>03 jun 2017</li>
-                                                <li>
-                                                    <span class="licon icon-tag"></span><a href="#">Python</a>, <a href="#">Deep Learning</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="gradient-overlay"></div>
-                                        <div class="color-overlay"></div>
-                                    </div>
-                                </section>
-                            </section>
-                            <!-- Add Part Ends -->
                             <!-- Choose Part Starts  -->
                             <section>
                                 <section class="choosePart ">
                                     <div class="choosePartImg">
-                                        <img src="~/Content/NewsFeed/add2.jpg" class="" alt="...">
+                                        <img src="~/Content/NewsFeed/add1.jpg" class="" alt="...">
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title">Thesis Title</h4>
@@ -1150,6 +1165,22 @@
                                     </div>
                                 </section>
                             </section>
+                            <section>
+                                <section class="choosePart ">
+                                    <div class="choosePartImg">
+                                        <img src="~/Content/NewsFeed/add1.jpg" class="" alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">Thesis Title</h4>
+                                        <p class="card-text">
+                                            Some quick example text to build on the card title and make
+                                            up the bulk of the card's content.
+                                        </p>
+                                    </div>
+                                </section>
+                            </section>
+
+
 
 
                             <!-- Choose Part Ends -->

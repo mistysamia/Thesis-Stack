@@ -21,6 +21,9 @@
         .navbar-brand img {
             height: 2rem;
         }
+        footer p {
+            color:wheat;
+        }
 </style>
 </head>
 
@@ -65,9 +68,9 @@
 
         <div class="container body-content">
             @RenderBody()
-            <hr />
+            <hr style="color: wheat;margin-top:5%;"/>
             <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p class="footer-bottom-text">All rights reserved by &copy; Thesis Stack 2021</p>
             </footer>
         </div>
 
