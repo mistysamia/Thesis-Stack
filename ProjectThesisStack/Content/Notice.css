@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
     font-family: 'Roboto Slab', serif;
     margin: 0;
 }
@@ -7,19 +8,23 @@ html {
     scroll-behavior: smooth;
 }
 
-section {
-    width: 100%;
-}
-
 #notice-heading img {
     width: 100%;
     margin: 10px 0;
+    padding: 10px 0;
+    background-color: rgb(160, 31, 31);
+}
+
+#median-heading img {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
 }
 /* CSS for Banner and highlight section starts here*/
 
 /* Banner Background */
 .video-fb-group-section {
-    background-color: #E2C29C;
+    background-color: #ddd0d0;
 }
 
 /* Banner Grid property */
@@ -52,26 +57,27 @@ section {
 
 
 /* Latest Notice List Starts here */
+.featured-notice-section {
+    background-color: rgb(34, 29, 29);
+}
 
 .latest-notice-list {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(4,1fr);
     grid-gap: 10px 5px;
     justify-content: center;
     align-items: center;
     padding: 0 5%;
     margin-top: 20px;
-    
 }
 
     .latest-notice-list div {
         padding: 2%;
         margin: 3%;
-       
+        /* height: 300px; */
         border-radius: 10px;
-        background-color: #e6ccac;
+        background-color: rgb(221, 221, 217);
         box-shadow: 0px 7px 29px 0px rgba(63, 63, 66, 0.521);
-
     }
 
 .latest-notice img {
@@ -84,14 +90,14 @@ section {
     width: 100%;
     padding: 2% 0;
     border-radius: 10px;
-    background-color: #89745B;
+    background-color: rgb(160, 31, 31);
     color: white;
     text-decoration: none;
     text-align: center;
 }
 
     .notice-open-button:hover {
-        background-color: #806749;
+        background-color: rgb(117, 11, 11);
         color: white;
     }
 
@@ -102,7 +108,8 @@ section {
 
 /* Latest Notice List ends here */
 .median-cgpa-section {
-    background-color: #353131;
+    background-color: #ddd0d0;
+    padding: 0 8%;
 }
 
 .median-cgpa-grid {
@@ -126,6 +133,7 @@ section {
 
     .dept:hover {
         background-color: #e6ccac;
+        border: 2px solid #7B6060;
         color: black;
         transform: scale(1.05);
         transition: transform 0.5s ease;

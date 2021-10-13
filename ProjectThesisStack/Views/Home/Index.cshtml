@@ -19,11 +19,522 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE =edge">
     <meta name="viewport" content="width =device-width, initial-scale=1">
+
+
+    <style>
+        body {
+    margin: 0;
+  
+}
+        .fullHomepageBG {
+            background-color: #ddd0d0;
+        }
+
+      
+/*************************
+Header Section Starts
+*************************/
+.headerSection {
+    background: url('/Content/header.jpg');
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.headerImg {
+    background-color: rgba(0, 0, 0, 0.425);
+    height: 100%;
+}
+
+.titleSection {
+    width: 850px;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 16%;
+    padding-top: 10%;
+}
+
+    .titleSection .title {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 50px;
+    }
+
+        .titleSection .title .block {
+            width: 0%;
+            height: 76px;
+            background: #ffb510;
+            position: absolute;
+            animation: mainBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+            display: flex;
+            margin-top: -7%;
+        }
+
+        .titleSection .title h1 {
+            font-family: 'Poppins';
+            color: #fff;
+            font-size: 70px;
+            -webkit-animation: mainFadeIn 2s forwards;
+            -o-animation: mainFadeIn 2s forwards;
+            animation: mainFadeIn 2s forwards;
+            animation-delay: 1.6s;
+            opacity: 0;
+            display: flex;
+            align-items: baseline;
+            position: relative;
+            margin-bottom: 11%;
+        }
+
+            .titleSection .title h1 span {
+                width: 0px;
+                height: 0px;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                background: #ffb510;
+                -webkit-animation: load 0.6s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+                animation: popIn 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+                animation-delay: 2s;
+                margin-left: 5px;
+                margin-top: -10px;
+                position: absolute;
+                bottom: 13px;
+                right: -12px;
+            }
+
+    .titleSection .role {
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 30px;
+        margin-top: -7px;
+    }
+
+        .titleSection .role .block {
+            width: 0%;
+            height: inherit;
+            background: #e91e63;
+            position: absolute;
+            animation: secBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+            animation-delay: 2s;
+            display: flex;
+            margin-top: 1%;
+        }
+
+        .titleSection .role p {
+            animation: secFadeIn 5s forwards;
+            animation-delay: 3.2s;
+            opacity: 0;
+            font-weight: 400;
+            font-family: 'Lato';
+            color: #fff;
+            font-size: 17px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-top: 4%;
+        }
+
+@@keyframes mainBlock {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+
+    50% {
+        width: 100%;
+        left: 0;
+    }
+
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+
+@@keyframes secBlock {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+
+    50% {
+        width: 100%;
+        left: 0;
+    }
+
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+
+@@keyframes mainFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@@keyframes popIn {
+    0% {
+        width: 0px;
+        height: 0px;
+        background: #e9d856;
+        border: 0px solid #ddd;
+        opacity: 0;
+    }
+
+    50% {
+        width: 10px;
+        height: 10px;
+        background: #e9d856;
+        opacity: 1;
+        bottom: 45px;
+    }
+
+    65% {
+        width: 7px;
+        height: 7px;
+        bottom: 0px;
+        width: 15px;
+    }
+
+    80% {
+        width: 10px;
+        height: 10px;
+        bottom: 20px;
+    }
+
+    100% {
+        width: 7px;
+        height: 7px;
+        background: #e9d856;
+        border: 0px solid #222;
+        bottom: 13px;
+    }
+}
+
+@@keyframes secFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
+/*************************
+Header Section Ends
+*************************/
+
+
+
+/*************************
+  Body Section Starts
+  *************************/
+.mainFeed {
+    width: 100%;
+}
+
+
+/*************************
+ Recent Starts
+*************************/
+
+.leftSection {
+}
+
+.leftSectionPart {
+    background-color: rgba(26, 26, 24, 0.103);
+    padding: 3% 8% 6% 8%;
+    border-radius: 12px;
+    margin: 4% 3% 4% 3%;
+}
+
+.eachHomeNotice {
+    background-color: rgb(221, 221, 217);
+    border-radius: 16px;
+    /* width: 1100px; */
+    margin-top: 2%;
+    transition: transform 0.2s ease-in;
+    padding: 2% 3% 1% 3%;
+    box-shadow: 0px 0px 20px rgb(172, 176, 180);
+}
+
+    .eachHomeNotice:hover {
+        transform: scale(1.03);
+        transition: transform 0.2s ease-in;
+    }
+
+/*************************
+ Recent Ends
+*************************/
+
+
+/*************************
+ Sponsor Starts
+*************************/
+.sponsorSectionPart {
+    height: 300px;
+}
+
+.eachSponsor {
+    width: 250px;
+    height: 100%;
+}
+
+.sponsorImg {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    opacity: 0.6;
+    box-shadow: 0px 0px 20px black;
+}
+
+.sponsorImgHover {
+    background-color: rgb(16, 19, 19);
+    height: 100%;
+    width: 100%;
+    margin-top: -120%;
+    border-radius: 15px;
+}
+
+.sponsorTitle {
+    margin-top: 6%;
+    position: absolute;
+    z-index: 44;
+    color: white;
+    width: 250px;
+    font-size: 38px;
+    transition: font-size 0.2s ease-out;
+}
+
+.eachSponsor:hover .sponsorImg {
+    opacity: 0.4;
+}
+
+.eachSponsor:hover .sponsorTitle {
+    font-size: 43px;
+    transition: font-size 0.2s ease-in;
+}
+/*************************
+ Sponsor Ends
+*************************/
+
+/*************************
+Extra UI part Starts
+*************************/
+.extraUipart {
+    height: 600px;
+    margin-top: 0%;
+    width: 100%;
+    box-shadow: 0px 0px 20px black;
+    border-radius: 7px;
+}
+
+    .extraUipart img {
+        height: 100%;
+        width: 100%;
+        border-radius: 7px;
+    }
+
+
+/*************************
+Extra UI part Ends
+*************************/
+
+
+/*************************
+Map UI part Starts
+*************************/
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+    .map-responsive iframe {
+        height: 90%;
+        width: 90%;
+        position: absolute;
+        border-radius: 14px;
+        margin-top: 7%;
+        margin-left: 5%;
+        box-shadow: 0px 0px 40px black;
+    }
+
+/*************************
+Map UI part Ends
+*************************/
+
+
+        /*************************
+Scroll Spy Starts
+*************************/
+        .rightSection {
+            background-color: rgb(29, 27, 27);
+        }
+
+        .rightcontributorPart {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 54px;
+            margin-bottom:30px;
+        }
+
+        .rightPart>li {
+            position: relative;
+            display: block;
+            margin-bottom: 5px;
+            padding: 0px;
+            text-align: center;
+            color: cornsilk;
+            text-transform: uppercase;
+            animation: fadeIn 0.5s linear;
+            animation-fill-mode: both;
+        }
+
+       
+
+        .rightPart>li a {
+            background-color: rgba(169, 169, 169, 0);
+            border: none;
+            color: cornsilk;
+        }
+
+            .rightPart>li a:hover {
+                background-color: rgb(221, 221, 217);
+                color: rgb(43, 39, 39);
+                width: 100%;
+                font-weight: 500;
+            }
+
+        .followUsIcon ul {
+            list-style: none;
+            margin-top: 20%;
+        }
+
+            .followUsIcon ul>li {
+                width: 52px;
+                height: 52px;
+                margin: 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                border-radius: 50%;
+                border: 5px solid #D8E2DC;
+                float: left;
+                transition: all 0.5s ease;
+            }
+
+                .followUsIcon ul >li .fa {
+                    color: #D8E2DC;
+                    transition: all 0.5s ease;
+                    font-size: 20px;
+                }
+
+                .followUsIcon ul> li:hover.facebook {
+                    border: 5px solid #3b5998;
+                    box-shadow: 0 0 15px #3b5998;
+                    transition: all 0.5s ease;
+                }
+
+                .followUsIcon ul >li:hover .fa-facebook {
+                    color: #3b5998;
+                    text-shadow: 0 0 15px #3b5998;
+                    transition: all 0.5s ease;
+                }
+
+                /*twitter*/
+                .followUsIcon ul >li:hover.twitter {
+                    border: 5px solid #00aced;
+                    box-shadow: 0 0 15px #00aced;
+                    transition: all 0.5s ease;
+                }
+
+                .followUsIcon ul >li:hover .fa-twitter {
+                    color: #00aced;
+                    text-shadow: 0 0 15px #00aced;
+                    transition: all 0.5s ease;
+                }
+
+                /* instagram */
+                .followUsIcon ul >li:hover.instagram {
+                    border: 5px solid #bc2a8d;
+                    box-shadow: 0 0 15px #bc2a8d;
+                    transition: all 0.5s ease;
+                }
+
+                .followUsIcon ul> li:hover .fa-instagram {
+                    color: #bc2a8d;
+                    text-shadow: 0 0 15px #bc2a8d;
+                    transition: all 0.5s ease;
+                }
+
+                /* google */
+                .followUsIcon ul >li:hover.google {
+                    border: 5px solid #dd4b39;
+                    box-shadow: 0 0 15px #dd4b39;
+                    transition: all 0.5s ease;
+                }
+
+                .followUsIcon ul >li:hover .fa-google {
+                    color: #dd4b39;
+                    text-shadow: 0 0 15px #dd4b39;
+                    transition: all 0.5s ease;
+                }
+
+
+
+        /*************************
+Scroll Spy Ends
+*************************/
+
+
+/*************************
+FindUs Spy Starts
+*************************/
+.FindUs {
+    margin-top: 15%;
+    padding-left: 6%;
+    color: wheat;
+    font-size: 20px;
+}
+
+    .FindUs a {
+        text-decoration: none;
+    }
+
+    .FindUs p:hover {
+        color: rgb(252, 0, 38);
+    }
+
+/*************************
+FindUs Spy Ends
+*************************/
+
+/* Body Section Ends  */
+
+
+    </style>
 </head>
 
 
 
-<section class="">
+<section class=" fullHomepageBG">
 
 
 
@@ -53,7 +564,7 @@
             <article class="col-3 rightSection">
                 <section class="rightcontributorPart">
                     <div id="list-example" class="list-group rightPart">
-                        <li class="mt-5">
+                        <li class="mt-5 ">
                             <a class="list-group-item list-group-item-action" href="#list-item-1">
                                 Recent
                                 Papers
@@ -66,22 +577,32 @@
                             <a class="list-group-item list-group-item-action" href="#list-item-3">Get Directions</a>
                         </li>
                         <hr>
-                        <li><a class="list-group-item list-group-item-action" href="#list-item-4">Videos</a></li>
+                        <li><a class="list-group-item list-group-item-action" href="#list-item-4">Statistics</a></li>
                         <hr>
                         <li> <a class="list-group-item list-group-item-action" href="#list-item-5">All Papers</a></li>
+                   
+                        <!-- FindUs Spy Starts -->
+                        <div class="followUsIcon" >
+                            <ul>
+                                <li class="facebook">
+                                    <a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="twitter">
+                                    <a href="#"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="instagram">
+                                    <a href="#">
+                                        <i class="fa fa-instagram fa-2x"
+                                           aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="google">
+                                    <a href="#"><i class="fa fa-google fa-2x" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- FindUs Spy Starts -->
-                    <section class="FindUs">
-                        <a href="" target="_blank">
-                            <p class="text-start "><i class="fab fa-facebook"></i> Facebook</p>
-                        </a>
-                        <a href="" target="_blank">
-                            <p class="text-start "><i class="fab fa-twitter"></i> Twitter</p>
-                        </a>
-                        <a href="" target="_blank">
-                            <p class="text-start "><i class="far fa-envelope"></i> Mail</p>
-                        </a>
-                    </section>
+
                     <!-- FindUs Spy Ends -->
                 </section>
             </article>
@@ -137,123 +658,123 @@
 
                             }
                         </section>
-                            <!-- Recent Paper Parts Ends-->
-                            <!-- Sponsor Part Starts -->
-                            <section id="list-item-2">
-                                <section class="sponsorSectionPart row">
-                                    <a href="https://www.proquest.com/" target="_blank" class="col-3">
-                                        <section class="eachSponsor">
-                                            <img src="~/Content/sponsor1.jpg" class="sponsorImg">
+                        <!-- Recent Paper Parts Ends-->
+                        <!-- Sponsor Part Starts -->
+                        <section id="list-item-2">
+                            <section class="sponsorSectionPart row">
+                                <a href="https://www.proquest.com/" target="_blank" class="col-3">
+                                    <section class="eachSponsor">
+                                        <img src="~/Content/sponsor1.jpg" class="sponsorImg">
 
-                                            <section class="sponsorImgHover">
-                                                <section>
-                                                    <p class="sponsorTitle text-center">
-                                                        ProQuest
-                                                    </p>
-                                                </section>
-
+                                        <section class="sponsorImgHover">
+                                            <section>
+                                                <p class="sponsorTitle text-center">
+                                                    ProQuest
+                                                </p>
                                             </section>
+
                                         </section>
-                                    </a>
-                                    <a href="https://library.queensu.ca/search/database/openthesis" target="_blank" class="col-3">
-                                        <section class="eachSponsor">
-                                            <img src="~/Content/sponsor2.jpg" class="sponsorImg">
+                                    </section>
+                                </a>
+                                <a href="https://library.queensu.ca/search/database/openthesis" target="_blank" class="col-3">
+                                    <section class="eachSponsor">
+                                        <img src="~/Content/sponsor2.jpg" class="sponsorImg">
 
-                                            <section class="sponsorImgHover">
-                                                <section>
-                                                    <p class="sponsorTitle text-center">
-                                                        openthesis
-                                                    </p>
-                                                </section>
-
+                                        <section class="sponsorImgHover">
+                                            <section>
+                                                <p class="sponsorTitle text-center">
+                                                    openthesis
+                                                </p>
                                             </section>
+
                                         </section>
-                                    </a>
-                                    <a href="https://cdlib.org/services/d2d/melvyl/" target="_blank" class="col-3">
-                                        <section class="eachSponsor">
-                                            <img src="~/Content/sponsor3.jpg" class="sponsorImg">
+                                    </section>
+                                </a>
+                                <a href="https://cdlib.org/services/d2d/melvyl/" target="_blank" class="col-3">
+                                    <section class="eachSponsor">
+                                        <img src="~/Content/sponsor3.jpg" class="sponsorImg">
 
-                                            <section class="sponsorImgHover">
-                                                <section>
-                                                    <p class="sponsorTitle text-center">
-                                                        Melvyl
-                                                    </p>
-                                                </section>
-
+                                        <section class="sponsorImgHover">
+                                            <section>
+                                                <p class="sponsorTitle text-center">
+                                                    Melvyl
+                                                </p>
                                             </section>
+
                                         </section>
-                                    </a>
-                                    <a href="https://searchworks.stanford.edu/view/10094248" target="_blank" class="col-3">
-                                        <section class="eachSponsor">
-                                            <img src="~/Content/sponsor4.jpg" class="sponsorImg">
+                                    </section>
+                                </a>
+                                <a href="https://searchworks.stanford.edu/view/10094248" target="_blank" class="col-3">
+                                    <section class="eachSponsor">
+                                        <img src="~/Content/sponsor4.jpg" class="sponsorImg">
 
-                                            <section class="sponsorImgHover">
-                                                <section>
-                                                    <p class="sponsorTitle text-center">
-                                                        OATD
-                                                    </p>
-                                                </section>
-
+                                        <section class="sponsorImgHover">
+                                            <section>
+                                                <p class="sponsorTitle text-center">
+                                                    OATD
+                                                </p>
                                             </section>
+
                                         </section>
-                                    </a>
-                                </section>
+                                    </section>
+                                </a>
                             </section>
-                            <!-- Sponsor Part Ends -->
-                            <!-- Extra UI part Starts -->
-                            <section id="list-item-3">
+                        </section>
+                        <!-- Sponsor Part Ends -->
+                        <!-- Extra UI part Starts -->
+                        <section id="list-item-3">
 
-                                <div class="map-responsive">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.5387581243053!2d90.40448511426574!3d23.763821984582716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c77decb5f845%3A0xc2eadd2f3b867792!2sAhsanullah%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2sbd!4v1632753757280!5m2!1sen!2sbd"
-                                            width="600" height="450" style="border:0;" allowfullscreen=""
-                                            loading="lazy"></iframe>
-                                </div>
+                            <div class="map-responsive">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.5387581243053!2d90.40448511426574!3d23.763821984582716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c77decb5f845%3A0xc2eadd2f3b867792!2sAhsanullah%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2sbd!4v1632753757280!5m2!1sen!2sbd"
+                                        width="600" height="450" style="border:0;" allowfullscreen=""
+                                        loading="lazy"></iframe>
+                            </div>
+                        </section>
+
+                        <!-- Extra UI part Ends -->
+                        <!-- Map UI part Starts -->
+                        <section id="list-item-4">
+                            <section class="extraUipart">
+                                <img src="~/Content/extraUi.png">
                             </section>
+                        </section>
+                        <!-- Map UI part Ends -->
+                        <!-- All Paper Starts --><section id="list-item-5" class="leftSectionPart">
+                            <h1 class="mb-5 mt-3">All Papers</h1>
+                            @foreach (var paper in (List<Paper>)ViewData["papers"])
+                            {
 
-                            <!-- Extra UI part Ends -->
-                            <!-- Map UI part Starts -->
-                            <section id="list-item-4">
-                                <section class="extraUipart">
-                                    <img src="~/Content/extraUi.png">
-                                </section>
-                            </section>
-                            <!-- Map UI part Ends -->
-                            <!-- All Paper Starts --><section id="list-item-5" class="leftSectionPart">
-    <h1 class="mb-5 mt-3">All Papers</h1>
-    @foreach (var paper in (List<Paper>)ViewData["papers"])
-    {
+                                <article class="eachHomeNotice">
+                                    <h3 class="text-danger mt-3">@(paper.title)</h3>
+                                    @{
+                                        var team = collTeams.Find(b => b.id == paper.teamID).ToList<Team>()[0];
+                                        var students = collStudents.Find(s => team.studentIDs.Contains(s.id)).ToList<Student>();
+                                        var supervisor = collSupervisor.Find(s => team.supervisorID == s.id).ToList<Supervisor>()[0];
+                                    }
+                                    <p>
+                                        <strong>
+                                            Published By :
+                                        </strong>
+                                        @foreach (var student in students)
+                                        {
+                                            <span>| @(student.name) |</span>
+                                        }
 
-        <article class="eachHomeNotice">
-            <h3 class="text-danger mt-3">@(paper.title)</h3>
-            @{
-                var team = collTeams.Find(b => b.id == paper.teamID).ToList<Team>()[0];
-                var students = collStudents.Find(s => team.studentIDs.Contains(s.id)).ToList<Student>();
-                var supervisor = collSupervisor.Find(s => team.supervisorID == s.id).ToList<Supervisor>()[0];
-            }
-            <p>
-                <strong>
-                    Published By :
-                </strong>
-                @foreach (var student in students)
-                {
-                    <span>| @(student.name) |</span>
-                }
+                                    </p>
+                                    <p style="margin-top:-2%"><strong>Supervisor : </strong> @(supervisor.name)</p>
+                                    <article class="d-flex justify-content-between">
+                                        <p class="fst-italic text-dark">
+                                            tags:
+                                            @(String.Join(", ", paper.tags))
+                                        </p>
+                                        <p class="fst-italic  text-success text-end">Published on : @(paper.publicationDate)</p>
+                                    </article>
+                                </article>
+                            }
+                        </section>
 
-            </p>
-            <p style="margin-top:-2%"><strong>Supervisor : </strong> @(supervisor.name)</p>
-            <article class="d-flex justify-content-between">
-                <p class="fst-italic text-dark">
-                    tags:
-                    @(String.Join(", ", paper.tags))
-                </p>
-                <p class="fst-italic  text-success text-end">Published on : @(paper.publicationDate)</p>
-            </article>
-        </article>
-                }
-    </section>
-                           
-                            <!-- All Papers Parts Ends-->
-                        </div>
+                        <!-- All Papers Parts Ends-->
+                    </div>
                 </section>
             </article>
             <!-- Feed Ends -->
@@ -276,5 +797,3 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
-
-<link href="~/Content/paper.css" rel="stylesheet">

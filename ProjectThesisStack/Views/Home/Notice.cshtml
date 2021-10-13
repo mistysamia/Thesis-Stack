@@ -1,6 +1,6 @@
-﻿@using ProjectThesisStack.Models ;
+﻿@using ProjectThesisStack.Models 
 @using MongoDB.Bson;
-@using MongoDB.Driver;
+@using MongoDB.Driver
 @{
     ViewBag.Title = "Notice";
     var notices = (List<Notice>)ViewData["notices"];
@@ -48,13 +48,240 @@
 
 
 
-    <link href="~/Content/Notice.css" rel="stylesheet">
+    <style>
+
+body{
+    
+    margin: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+#notice-heading img{
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
+    background-color: rgb(160, 31, 31);
+}
+#median-heading img{
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+/* CSS for Banner and highlight section starts here*/
+
+/* Banner Background */
+.video-fb-group-section{
+    background-color: #ddd0d0;
+}
+
+/* Banner Grid property */
+.video-fb-group-grid, .median-cgpa-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1%;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+}
+.aust-video video{
+    border-radius: 10px;
+    height:100%;
+    width:100%;
+    margin-left: 8%;
+    border: 3px solid white;
+}
+.fb-group{
+    display: block;
+    margin:  25px auto;
+}
+.fb-group img:hover{
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+}
+
+
+/* Latest Notice List Starts here */
+.featured-notice-section{
+    background-color: rgb(34, 29, 29);
+}
+        .latest-notice-list {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-gap: 10px 5px;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            margin-top: 20px;
+            padding: 4% 5% 3% 5%;
+        }
+.latest-notice-list div{
+    padding: 2%;
+    margin: 3%;
+    /* height: 300px; */
+    border-radius:10px;
+    background-color: rgb(221, 221, 217);
+    box-shadow:  0px 7px 29px 0px rgba(63, 63, 66, 0.521);
+}
+     
+        .latest-notice img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+        }
+.notice-open-button{
+    width: 100%;
+    padding: 2% 0;
+    border-radius:10px;
+    background-color: rgb(160, 31, 31);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+.notice-open-button:hover {
+    background-color: rgb(117, 11, 11);
+    color: white;
+}
+.date-of-notice{
+    color: green;
+    text-align: right;
+}
+        .latest-notice {
+            transition: transform .2s;
+        }
+            .latest-notice:hover {
+                box-shadow: 0px 0px 40px #000000;
+                transform: scale(1.03);
+            }
+        /* Latest Notice List ends here */
+        .median-cgpa-section {
+            background-color: #ddd0d0;
+            padding: 0 8%;
+        }
+.median-cgpa-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    align-items: center;
+    padding: 2%;
+}
+.dept{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    border-radius:10px;
+    padding: 5px;
+    color: white;
+    background-color:#7B6060;
+    align-items: center;
+    margin: 10px 0;
+    height:50%;
+}
+.dept:hover{
+    background-color:#e6ccac;
+    border: 2px solid #7B6060;
+    color:black;
+    transform: scale(1.03);
+    transition: transform 0.5s ease;
+}
+.dept-img{
+    height: 70%;
+    width:70%;
+    margin:6%;
+}
+        .dept-name {
+            text-align: center;
+            margin: 6%;
+        }
+.dept-img img{
+    border-radius: 5px;
+    border: 2px solid white;
+    width: 100%;
+    height: 100%;
+}
+
+/* Median CGPA */
+.median-cgpa-section{
+    margin-top: -10px;
+    background-color: #353131;
+}
+.acc-info{
+    background-color: #e6ccac;
+}
+.cgpa-img{
+
+    height: 400px;
+}
+.cgpa-img img{
+    border-radius: 5px;
+    border: 2px solid white;
+    width: 100%;
+    height: 100%;
+}
+#acc-button {
+    color: white;
+    background-color: #7B6060;
+  }
+
+@@media (max-width: 992px){
+    .video-fb-group-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .aust-video video{
+        margin-left: 0;
+    }
+    .latest-notice-list{
+        grid-template-columns: repeat(2,1fr);
+    }
+    /* .latest-notice-list div{
+        height: 550px;
+    } */
+    .median-cgpa-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
+/* Responsive customization for mobile phone */
+@@media (max-width: 668px){
+    .video-fb-group-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .aust-video video{
+        margin-left: 0;
+    }
+    .latest-notice-list{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .median-cgpa-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
+@@media (max-width: 375px){
+    .video-fb-group-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .aust-video video{
+        margin-left: 0;
+    }
+    .latest-notice-list{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .dept{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
+    </style>
 </head>
 <section class="">
     @{var id = 0; }
 
     <!-- video and facebook group -->
-    <section class="video-fb-group-section">
+    <section container class="video-fb-group-section">
         <div class="video-fb-group-grid">
             <div class="aust-video">
                 <video controls autoplay muted>
@@ -73,50 +300,59 @@
 
 
     <!-- latest Notice title -->
-    <section>
+    <section style="margin-top: -10px;">
         <div id="notice-heading">
             <img src="~/Content/notice-featured.png" />
         </div>
     </section>
 
     <!-- latest notice list -->
-
-    <section>
-        <div class="latest-notice-list">
+    <section class="featured-notice-section" style="margin-top: -30px;">
+        <div class="latest-notice-list" style="background-color: #ddd0d0; 
+        ">
             @foreach (var notice in featuredNotice)
             {
-                <div class="latest-notice" style="height:520px;">
+            <div class="latest-notice"  style="margin:6%; ">
+                <section style="height: 50%; width:90%; margin:4%;">
                     <img src="@(notice.dp)" alt="">
-                    <h3>@(notice.title)</h3>
-                    <p>
-                        @(notice.body)
-                    </p>
-                    <i>
-                        <p class="date-of-notice"><strong> @(notice.date)</strong></p>
-                    </i>
+                </section>
+                <section style="margin: 4%;">
+                    <section style=" height:110px;">
+                        <h5 style="padding: 10px; color: #0a7025; ">@(notice.title)</h5>
+                    </section>
+                    <section style=" height:150px;">
+                        <p>
+                            @(notice.body)
+                        </p>
+                    </section>
 
-                    <a href=" @(notice.bodyLink)" target="_blank" type="button" class="notice-open-button">
+                    <i>
+                        <p class="date-of-notice"><strong>@(notice.date)</strong></p>
+                    </i>
+                    <a href="https://www.aust.edu/notice/914" target="_blank" type="button" class="notice-open-button">
                         CLICK
                         TO OPEN
                     </a>
-                </div>
+                </section>
+                
+            </div>
             }
-        </div>
+            </div>
     </section>
 
     <!-- Median CGPA title -->
-    <section>
-        <div id="notice-heading">
+    <section style="margin-top: -20px;">
+        <div id="median-heading">
             <img src="~/Content/median-CGPA-title.png" />
         </div>
     </section>
 
     <!-- Median CGPA of each Department -->
-    <Section class="median-cgpa-section">
-        <div class="median-cgpa-grid">
+    <Section class="median-cgpa-section" style="background-color: #ddd0d0; margin-top: -20px;">
+        <div class=" median-cgpa-grid">
             <div class="median">
                 <div>
-                    <h4 style="text-align:center; color: white;" id="department-name">Department Name</h4>
+                    <h4 style="text-align:center; color: #7B6060;" id="department-name">Department Name</h4>
                     <div class="cgpa-img">
                         <img src="~/Content/Department/CSE.jpeg" id="department-image" />
                     </div>
@@ -209,11 +445,11 @@
                             @(cseY4S1.medianCG), @(cseY4S1.maxCG), @(cseY4S1.totalStudents),
                             @(cseY4S2.medianCG), @(cseY4S2.maxCG), @(cseY4S2.totalStudents)
                     )">
-                    <div class="dept-img">
+                    <div class="dept-img" >
                         <img src="~/Content/Department/CSE.jpeg" />
                     </div>
                     <div class="dept-name">
-                        <h4>Department of<br>Computer Science and Engineering (CSE)</h4>
+                        <h5>Department of<br>Computer Science and Engineering (CSE)</h5>
                     </div>
                 </div>
 
@@ -228,7 +464,7 @@
                         <img src="~/Content/Department/EEE.jpeg" />
                     </div>
                     <div class="dept-name">
-                        <h4>Department of<br>Electrical & Electronics Engineering (EEE)</h4>
+                        <h5>Department of<br>Electrical & Electronics Engineering (EEE)</h5>
                     </div>
                 </div>
 
@@ -242,7 +478,7 @@
                         <img src="~/Content/Department/CE.jpeg" />
                     </div>
                     <div class="dept-name">
-                        <h4>Department of<br>Civil Engineering (CE)</h4>
+                        <h5>Department of<br>Civil Engineering (CE)</h5>
                     </div>
                 </div>
 
@@ -256,9 +492,10 @@
                         <img src="~/Content/Department/MPE.jpg" />
                     </div>
                     <div class="dept-name">
-                        <h4>Department of<br>Mechanical Engineering (ME)</h4>
+                        <h5>Department of<br>Mechanical Engineering (ME)</h5>
                     </div>
                 </div>
+
 
                 <div class="dept" onclick="showCGPA('Textile Engineering (TE)', '/Content/Department/TE.jpeg',
                             @(teY3S1.medianCG), @(teY3S1.maxCG), @(teY3S1.totalStudents),
@@ -270,9 +507,10 @@
                         <img src="~/Content/Department/TE.jpeg" />
                     </div>
                     <div class="dept-name">
-                        <h4>Department of<br>Textile Engineering (TE)</h4>
+                        <h5>Department of<br>Textile Engineering (TE)</h5>
                     </div>
                 </div>
+
 
                 <div class="dept" onclick="showCGPA('Industrial Production Engineering (IPE)', '/Content/Department/AS.png',
                             '@(ipeY3S1.medianCG)', '@(ipeY3S1.maxCG)', '@(ipeY3S1.totalStudents)',
@@ -284,7 +522,7 @@
                         <img src="~/Content/Department/AS.png" />
                     </div>
                     <div class="dept-name">
-                        <h4>Department of<br>Arts and Science (A&S)</h4>
+                        <h5>Department of<br>Arts and Science (A&S)</h5>
                     </div>
                 </div>
 
@@ -295,33 +533,41 @@
 
     <!-- Featured Notice title -->
     <section>
-        <div id="notice-heading">
+        <div id="notice-heading" style="margin-top: -10px;">
             <img src="~/Content/notice-latest.png" />
         </div>
     </section>
 
     <!-- Featured notice list -->
-    <section>
-        <div class="latest-notice-list">
+    <section style="background-color: rgb(39, 35, 35); margin-top: -30px;" ">
+        <div class=" latest-notice-list">
             @foreach (var notice in notices)
             {
-                <div class="latest-notice">
-                    <h3>@(notice.title)</h3>
+            <div class="latest-notice"  style="margin:6%; ">
+                <section style="height: 130px; padding: 3%; ">
+                    <h5 style="padding: 10px; color: #0a7025;">@(notice.title)</h5>
+                </section>
+               
+                <article style="height: 208px; padding: 7%; ">
                     <p>
                         @(notice.body)
                     </p>
-                    <i>
-                        <p class="date-of-notice"><strong>@(notice.date)</strong></p>
-                    </i>
-                    <a href="@(notice.bodyLink)" target="_blank" type="button" class="notice-open-button">
-                        CLICK
-                        TO OPEN
-                    </a>
-                </div>
+                </article>
+
+                <i>
+                    <p class="date-of-notice"><strong>@(notice.date)</strong></p>
+                </i>
+                <a href="@(notice.bodyLink)" target="_blank" type="button" class="notice-open-button">
+                    CLICK
+                    TO OPEN
+                </a>
+
+               
+            </div> 
             }
 
-        </div>
-    </section>
+</section>
+
     @*}*@
 </section>
 <script src="~/bundles/jquery-3.3.1.min.js"></script>
