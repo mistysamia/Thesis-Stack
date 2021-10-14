@@ -22,6 +22,7 @@ namespace ProjectThesisStack.Controllers
         }
         public ActionResult Login()
         {
+            
             ViewBag.LoginFailed = null;
             return View();
         }
@@ -507,9 +508,34 @@ namespace ProjectThesisStack.Controllers
             return View();
         }
 
-        public ActionResult TeamProfile()
+
+        [Route("/Home/TeamProfile/{id}")]
+        public ActionResult TeamProfile(String id)
         {
-            return View();
+
+            var coll = db.GetCollection<Team>("Team");
+            var teamsProfile = coll.Find(b => b.id==ObjectId.Parse(id)).ToList<Team>();
+            var collSup = db.GetCollection<Supervisor>("Supervisor");
+            var collStut = db.GetCollection<Student>("Student");
+
+
+            if ( teamsProfile.Count==0)
+            {
+                //Banana error khaise
+                return View();
+            }
+            else
+            {
+                var supervisor = collSup.Find(b => b.id == teamsProfile[0].supervisorID).ToList<Supervisor>()[0];
+                ViewData["TeamProfileSup"] = supervisor;
+                var students = collStut.Find(b => teamsProfile[0].studentIDs.Contains(b.id)).ToList<Student>();
+                ViewData["TeamProfileId"] = teamsProfile[0];
+                ViewData["students"] = students;
+                return View();
+            }
+           
         }
+
+        
     }
 }

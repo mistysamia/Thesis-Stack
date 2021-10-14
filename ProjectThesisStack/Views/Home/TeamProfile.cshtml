@@ -8,6 +8,9 @@
 @using System.Web.Mvc;
 @{
     ViewBag.Title = "TeamProfile";
+    Team team = (Team)ViewData["TeamProfileId"];
+    Supervisor sup = (Supervisor)ViewData["TeamProfileSup"];
+    var stud = (List<Student>)ViewData["students"];
 }
 
 
@@ -118,8 +121,8 @@
             }
 
             .eachTeamSup .TeamSupLeft .supImg {
-                height: 70%;
-                width: 70%;
+                height: 300px;
+                width: 80%;
                 padding-top: 20%;
             }
 
@@ -181,9 +184,9 @@
             }
 
         .eachTeamDetailsImg {
-            height: 53%;
-            width: 65%;
-            margin: 10% 0% 0% 19%;
+            height: 210px;
+            width: 75%;
+            margin: 10% 0% 0% 14%;
         }
 
             .eachTeamDetailsImg img {
@@ -198,7 +201,7 @@
             padding: 4% 2% 3% 2%;
         }
 
-            .eachTeamDetailsName h3 {
+            .eachTeamDetailsName h4 {
                 color: rgb(163, 49, 7);
             }
         /* Team Members Details Ends  */
@@ -218,31 +221,32 @@
         </section>
 
         <!--   Team Profile Card starts -->
+
         <section class="eachTeamProfile">
             <section class="teamProfile">
                 <article class="row">
                     <section class="col-5 teamProfileLeft">
                         <div class="teamProfileImg">
-                            <img src="~/Content/profile.jpg">
+                            <img src="@(team.dp)">
                         </div>
                     </section>
                     <section class="col-7 teamProfileRight">
                         <div class="teamProfileHeadings">
-                            <p>Three Dots</p>
+                            <p>@(team.teamName)</p>
                         </div>
 
                         <article class="teamProfileDetails">
                             <section class="row">
                                 <div class="col-4 teamDetails">
-                                    <h2>10</h2>
+                                    <h2>@(team.studentIDs.Count())</h2>
                                     <h6>Member</h6>
                                 </div>
                                 <div class="col-4 teamDetails">
-                                    <h2>10</h2>
+                                    <h2>3</h2>
                                     <h6>Papers</h6>
                                 </div>
                                 <div class="col-4 teamDetails">
-                                    <h2>10</h2>
+                                    <h2>2</h2>
                                     <h6>Publish</h6>
                                 </div>
                             </section>
@@ -262,13 +266,13 @@
                     <section class="col-4 TeamSupLeft">
                         <div class="supImgSection">
                             <div class="supImg">
-                                <img src="~/Content/profile.jpg">
+                                <img src="@(sup.dp)">
                             </div>
                         </div>
                         <div class="text-center teamSupDeatils">
-                            <h2>Mr. Alfred Joe</h2>
-                            <p>Assistant Professor</p>
-                            <p>CSE|AUST</p>
+                            <h2>@(sup.name)</h2>
+                            <p>@(sup.designation)</p>
+                            <p>@(sup.department)|AUST</p>
                         </div>
                     </section>
 
@@ -276,20 +280,22 @@
                         <article style="margin-bottom: 3%;">
                             <h3>Educational Background</h3>
                             <section class="TeamSupRightList">
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                @foreach (var eduback in sup.educationalBackgrounds)
+                                {
+                                    <p style="margin-top: -2%;">-@(eduback)</p>
+                                }
+
                             </section>
                         </article>
 
                         <article>
                             <h3>Area of Interests</h3>
                             <section class="TeamSupRightList">
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
-                                <p style="margin-top: -2%;">-Masters Masters Masters Masters MastersMasters Masters Masters</p>
+                                @foreach (var interest in sup.researchInterests)
+                                {
+                                    <p style="margin-top: -2%;">-@(interest)</p>
+                                }
+
                             </section>
                         </article>
                     </section>
@@ -305,62 +311,34 @@
     <section class="teamDetails">
         <h1 class="text-center">Members</h1>
         <section class="row">
+            @foreach (var stu in stud)
+            {
+                <section class="col-3">
 
-            <section class="col-3">
-                <section class=" eachTeamDetails" style="width: 18rem;">
-                    <section class="eachTeamDetailsImg">
-                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
+                    <section class=" eachTeamDetails" style="width: 18rem;">
+                        <section class="eachTeamDetailsImg">
+                            <img src="@(stu.dp)" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
+                        </section>
+                        <section class="eachTeamDetailsName">
+                            <section style="height:70px;">
+                                <h4>@(stu.name)</h4>
+                            </section>
+                            
+                            <h6>Email : @(stu.email)</h6>
+                            @{
+                                var sem=(stu.semester);
+                                char year = sem[1];
+                                char semester = sem[3];
+                            }
+                        <h6>Year: @(year) Semester: @(semester)</h6>
+                            <p>@(stu.department) | AUST</p>
+                        </section>
                     </section>
-                    <section class="eachTeamDetailsName">
-                        <h3>Samia Rahman Misty</h3>
-                        <h6>Email : 180104101@aust.edu</h6>
-                        <h6>Year: 4th Semester: 1st</h6>
-                        <p>CSE | AUST</p>
-                    </section>
-                </section>
-            </section>
 
-            <section class="col-3">
-                <section class=" eachTeamDetails" style="width: 18rem;">
-                    <section class="eachTeamDetailsImg">
-                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
-                    </section>
-                    <section class="eachTeamDetailsName">
-                        <h3>Samia Rahman Misty</h3>
-                        <h6>Email : 180104101@aust.edu</h6>
-                        <h6>Year: 4th Semester: 1st</h6>
-                        <p>CSE | AUST</p>
-                    </section>
-                </section>
-            </section>
 
-            <section class="col-3">
-                <section class=" eachTeamDetails" style="width: 18rem;">
-                    <section class="eachTeamDetailsImg">
-                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
-                    </section>
-                    <section class="eachTeamDetailsName">
-                        <h3>Samia Rahman Misty</h3>
-                        <h6>Email : 180104101@aust.edu</h6>
-                        <h6>Year: 4th Semester: 1st</h6>
-                        <p>CSE | AUST</p>
-                    </section>
                 </section>
-            </section>
-
-            <section class="col-3">
-                <section class=" eachTeamDetails" style="width: 18rem;">
-                    <section class="eachTeamDetailsImg">
-                        <img src="~/Content/profile.jpg" class=" mx-auto d-block card-img-top eachTeamDetailsDp" alt="...">
-                    </section>
-                    <section class="eachTeamDetailsName">
-                        <h3>Samia Rahman Misty</h3>
-                        <h6>Email : 180104101@aust.edu</h6>
-                        <h6>Year: 4th Semester: 1st</h6>
-                        <p>CSE | AUST</p>
-                    </section>
-                </section>
-            </section>
+            }
+         
 
         </section>
     </section>

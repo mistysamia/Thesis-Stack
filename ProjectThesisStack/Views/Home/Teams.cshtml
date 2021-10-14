@@ -517,74 +517,75 @@
                     <section class="recentTeams ">
 
                         @foreach (var team in (List<Team>)ViewData["teams"])
-                        {
-                            <section class="each-TeamSection">
-                                <article class="each-Team">
-                                    <section>
-                                        <article class="each-card-Design">
-                                            <section class="row row-cols-1 row-cols-md-2">
+                        {<a href="/Home/TeamProfile/@(team.id)"  style="text-decoration:none;">
+    <section class="each-TeamSection" style="color: #25282b; ">
+        <article class="each-Team">
+            <section>
+                <article class="each-card-Design">
+                    <section class="row row-cols-1 row-cols-md-2">
 
-                                                <!-- Image Part -->
-                                                <article class="col ">
-                                                    <div class="imgPart">
-                                                        <img src="@(team.dp)">
-                                                    </div>
-                                                </article>
+                        <!-- Image Part -->
+                        <article class="col ">
+                            <div class="imgPart">
+                                <img src="@(team.dp)">
+                            </div>
+                        </article>
 
-                                                <!-- Headings Part -->
-                                                <article class="col ">
-                                                    <div class="headingsPart">
-                                                        <h3 class="headings">@(team.teamName)</h3>
-                                                        <p>@(supervisorMap[team.supervisorID].name)</p>
-                                                    </div>
-                                                </article>
+                        <!-- Headings Part -->
+                        <article class="col ">
+                            <div class="headingsPart">
+                                <h3 class="headings">@(team.teamName)</h3>
+                                <p>@(supervisorMap[team.supervisorID].name)</p>
+                            </div>
+                        </article>
 
 
-                                                <!-- Researchers Part -->
-                                                <article class="col">
-                                                    <div class="eachCardLeftPart">
-                                                        <h4>
-                                                            <span class="badge bg-success">Researchers</span>
-                                                        </h4>
-                                                        @foreach (var studentID in team.studentIDs)
-                                                        {
-                                                            <h6> @(studentMap[studentID].name) </h6>
-                                                        }
-                                                    </div>
-                                                </article>
+                        <!-- Researchers Part -->
+                        <article class="col">
+                            <div class="eachCardLeftPart">
+                                <h4>
+                                    <span class="badge bg-success">Researchers</span>
+                                </h4>
+                                @foreach (var studentID in team.studentIDs)
+                                {
+                                    <h6 > @(studentMap[studentID].name) </h6>
+                                }
+                            </div>
+                        </article>
 
-                                                <!-- Details Part -->
-                                                <article class="col ">
-                                                    <article class="TeamDetailsList d-flex justify-content-around">
+                        <!-- Details Part -->
+                        <article class="col ">
+                            <article class="TeamDetailsList d-flex justify-content-around">
 
-                                                        <section class="eachDetails">
-                                                            <h5>1</h5>
-                                                            <p>Papers</p>
-                                                        </section>
-                                                        <section class="eachDetails ">
-                                                            <h5>@(team.studentIDs.Length)</h5>
-                                                            <p>Members</p>
-                                                        </section>
-                                                        <section class="eachDetails">
-                                                            <h5>1</h5>
-                                                            <p>Publish</p>
-                                                        </section>
-                                                    </article>
-                                                    <article class="InterestPart">
-                                                        <h4 class="Interest">Interest</h4>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                                                            veritatis,
-                                                            consequatur, porro rerum dolorem quas
-                                                        </p>
-                                                    </article>
-                                                </article>
+                                <section class="eachDetails">
+                                    <h5>1</h5>
+                                    <p>Papers</p>
+                                </section>
+                                <section class="eachDetails ">
+                                    <h5>@(team.studentIDs.Length)</h5>
+                                    <p>Members</p>
+                                </section>
+                                <section class="eachDetails">
+                                    <h5>1</h5>
+                                    <p>Publish</p>
+                                </section>
+                            </article>
+                            <article class="InterestPart">
+                                <h4 class="Interest">Interest</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+                                    veritatis,
+                                    consequatur, porro rerum dolorem quas
+                                </p>
+                            </article>
+                        </article>
 
-                                            </section>
-                                        </article>
-                                    </section>
-                                </article>
-                            </section>
+                    </section>
+                </article>
+            </section>
+        </article>
+    </section>
+</a>
                         }
                     </section>
 
@@ -825,7 +826,8 @@
                 <section class="recentTeams">
                     @foreach (var team in (List<Team>)ViewData["teams"])
                     {
-                        <section class="each-TeamSection">
+                    <a href="/Home/TeamProfile/@(team.id)" style="text-decoration:none;">
+                        <section class="each-TeamSection" style="color: #25282b; ">
                             <article class="each-Team">
                                 <section>
                                     <article class="each-card-Design">
@@ -891,9 +893,10 @@
                                 </section>
                             </article>
                         </section>
-                    }
+                    </a>                          
+                            }
 
-                </section>
+                    </section>
             </section>
 
             <!--

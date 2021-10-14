@@ -70,7 +70,7 @@
             height: 530px;
             padding-top: 8%;
             margin-top: 2%;
-            margin-left:80%;
+            margin-left: 80%;
         }
 
             .box .password,
@@ -88,13 +88,13 @@
                 transition: 0.25s;
                 margin: 20px auto;
             }
-    
-        .box P {
-            color: rgb(223, 8, 62);
-            text-transform: uppercase;
-            font-weight: 500;
-            font-size: 40px;
-        }
+
+            .box P {
+                color: rgb(223, 8, 62);
+                text-transform: uppercase;
+                font-weight: 500;
+                font-size: 40px;
+            }
 
             .box h1 {
                 color: rgb(29, 226, 11);
@@ -112,12 +112,13 @@
             width: 300px;
             border-color: #2ecc71
         }
+
         .ErrorSection {
             color: #d90707;
             height: 30px;
         }
-      
-        
+
+
         .box .login {
             border: 0;
             background: none;
@@ -132,7 +133,6 @@
             cursor: pointer;
             font-size: 14px;
             margin: -10% 0% 14% 69%;
-           
         }
 
             .box .login:hover {
@@ -147,7 +147,7 @@
             border: 1px solid rgba(99, 79, 79, 0.486);
             margin-bottom: 7%;
             color: rgb(27, 25, 25);
-            line-height:50px;
+            line-height: 50px;
         }
 
 
@@ -233,10 +233,6 @@
             .dropdown:hover {
                 border: 2px solid rgb(255, 38, 0)
             }
-
-
-   
-
     </style>
 </head>
 
@@ -254,49 +250,60 @@
 <section class="container">
     <section class="row">
         <section class="col-md-6">
-            <div class="contrainer box">
-                <p>Thesis Stack</p>
-                <h1>Login</h1>
-
-                <hr class="hrStyle">
-                <section class="ErrorSection">
-
-                    @if (ViewBag.LoginFailed != null)
-                    {
-                        <h5>@(ViewBag.LoginFailed)</h5>
-                    }
-                </section>
-
-                <section class="InputSection">
-
-                    @using (Html.BeginForm())
-                    {
-                        @*<input type="email" name="" placeholder="Email" class="email">*@
-                        @Html.TextBoxFor(m => m.email, new { @class = "email", @id = "email", type = "email", placeholder = "Email (aust domain)", required = "required", pattern = "^[a-zA-Z0-9._-]+@aust.edu$" })
-                        @*<input type="password" name="" placeholder="Password" class="password">*@
-                        @Html.TextBoxFor(m => m.password, new { @class = "password", @id = "password", type = "password", placeholder = "Password", required = "required", pattern = "[0-9a-zA-Z].{7,20}" })
-
-                        @*<ul class="dropdown">
-                <li>
-                    <a href="#">Supervisor</a>
-                    <ul>
-                        <li><a href="#">Supervisor</a></li>
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">Student</a></li>
-                    </ul>
-                </li>
-            </ul>*@
-
-
-                        @Html.DropDownListFor(m => m.UserType,
-                          new SelectList(Enum.GetValues(typeof(LoginUserType))), new { @class = "dropdown" })
-
-
-                        <input type="submit" id="LoginBtn" name="signin" value="Login" href="#" class="login">
-                    }
-
-                </section>
+            @if (Session["usertype"] != null)
+            {
+            <div style="border:1px solid red;">
+                <h3 class="text-center">There is an active session running. Please <a href="@Url.Action("Index","Home/Logout")"><span style=" color: #d90707;">Logout</span></a> first </h3>
             </div>
+                }
+            else
+            {
+                <div class="contrainer box">
+
+                    <p>Thesis Stack</p>
+                    <h1>Login</h1>
+
+                    <hr class="hrStyle">
+                    <section class="ErrorSection">
+
+                        @if (ViewBag.LoginFailed != null)
+                        {
+                            <h5>@(ViewBag.LoginFailed)</h5>
+                        }
+                    </section>
+
+                    <section class="InputSection">
+
+                        @using (Html.BeginForm())
+                        {
+                            @*<input type="email" name="" placeholder="Email" class="email">*@
+                            @Html.TextBoxFor(m => m.email, new { @class = "email", @id = "email", type = "email", placeholder = "Email (aust domain)", required = "required", pattern = "^[a-zA-Z0-9._-]+@aust.edu$" })
+                            @*<input type="password" name="" placeholder="Password" class="password">*@
+                            @Html.TextBoxFor(m => m.password, new { @class = "password", @id = "password", type = "password", placeholder = "Password", required = "required", pattern = "[0-9a-zA-Z].{7,20}" })
+
+                            @*<ul class="dropdown">
+                                    <li>
+                                        <a href="#">Supervisor</a>
+                                        <ul>
+                                            <li><a href="#">Supervisor</a></li>
+                                            <li><a href="#">Admin</a></li>
+                                            <li><a href="#">Student</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>*@
+
+
+                            @Html.DropDownListFor(m => m.UserType,
+                              new SelectList(Enum.GetValues(typeof(LoginUserType))), new { @class = "dropdown" })
+
+
+                            <input type="submit" id="LoginBtn" name="signin" value="Login" href="#" class="login">
+                        }
+
+                    </section>
+                </div>
+            }
+
         </section>
     </section>
 </section>
